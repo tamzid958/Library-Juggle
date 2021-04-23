@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -32,6 +33,11 @@ namespace Library_Juggle.Business_Logic_Layer
         public static KeyValuePair<T, TV> CastFromObjectToKeyValuePair<T, TV>(object obj)
         {
             return (KeyValuePair<T, TV>) obj;
+        }
+
+        public static void LogOutUser()
+        {
+            if (File.Exists(@"cookie.json")) File.Delete(@"cookie.json");
         }
 
     }

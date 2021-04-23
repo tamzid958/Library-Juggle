@@ -19,7 +19,7 @@ namespace Library_Juggle.Migrations
                 .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Library_Juggle.model.Book", b =>
+            modelBuilder.Entity("Library_Juggle.Data_Access_Layer.Entities.Book", b =>
                 {
                     b.Property<int>("BookId")
                         .ValueGeneratedOnAdd()
@@ -60,7 +60,7 @@ namespace Library_Juggle.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("Library_Juggle.model.Genre", b =>
+            modelBuilder.Entity("Library_Juggle.Data_Access_Layer.Entities.Genre", b =>
                 {
                     b.Property<int>("GenreId")
                         .ValueGeneratedOnAdd()
@@ -85,7 +85,7 @@ namespace Library_Juggle.Migrations
                     b.ToTable("Genres");
                 });
 
-            modelBuilder.Entity("Library_Juggle.model.Loan", b =>
+            modelBuilder.Entity("Library_Juggle.Data_Access_Layer.Entities.Loan", b =>
                 {
                     b.Property<int>("LoanId")
                         .ValueGeneratedOnAdd()
@@ -116,7 +116,7 @@ namespace Library_Juggle.Migrations
                     b.ToTable("Loans");
                 });
 
-            modelBuilder.Entity("Library_Juggle.model.Role", b =>
+            modelBuilder.Entity("Library_Juggle.Data_Access_Layer.Entities.Role", b =>
                 {
                     b.Property<int>("RoleId")
                         .ValueGeneratedOnAdd()
@@ -150,7 +150,7 @@ namespace Library_Juggle.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Library_Juggle.model.User", b =>
+            modelBuilder.Entity("Library_Juggle.Data_Access_Layer.Entities.User", b =>
                 {
                     b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
@@ -190,23 +190,23 @@ namespace Library_Juggle.Migrations
                         new
                         {
                             UserId = 1,
-                            Email = "admin@libraryjungle.com",
+                            Email = "admin@libraryjuggle.com",
                             Name = "Library Admin",
                             Password = "CD6FA8ABA065897E5A56061882350B66",
                             RoleId = 1,
-                            Token = "846FC1DF7029B16565EC0E9F81091032"
+                            Token = "D6824EC7935B32990AA19B792426E74B"
                         });
                 });
 
-            modelBuilder.Entity("Library_Juggle.model.Book", b =>
+            modelBuilder.Entity("Library_Juggle.Data_Access_Layer.Entities.Book", b =>
                 {
-                    b.HasOne("Library_Juggle.model.Genre", "Genre")
+                    b.HasOne("Library_Juggle.Data_Access_Layer.Entities.Genre", "Genre")
                         .WithMany("Books")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Library_Juggle.model.User", "Users")
+                    b.HasOne("Library_Juggle.Data_Access_Layer.Entities.User", "Users")
                         .WithMany("Books")
                         .HasForeignKey("UsersUserId");
 
@@ -215,22 +215,22 @@ namespace Library_Juggle.Migrations
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("Library_Juggle.model.Genre", b =>
+            modelBuilder.Entity("Library_Juggle.Data_Access_Layer.Entities.Genre", b =>
                 {
-                    b.HasOne("Library_Juggle.model.User", "Users")
+                    b.HasOne("Library_Juggle.Data_Access_Layer.Entities.User", "Users")
                         .WithMany("Genres")
                         .HasForeignKey("UsersUserId");
 
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("Library_Juggle.model.Loan", b =>
+            modelBuilder.Entity("Library_Juggle.Data_Access_Layer.Entities.Loan", b =>
                 {
-                    b.HasOne("Library_Juggle.model.Book", "Books")
+                    b.HasOne("Library_Juggle.Data_Access_Layer.Entities.Book", "Books")
                         .WithMany()
                         .HasForeignKey("BooksBookId");
 
-                    b.HasOne("Library_Juggle.model.User", "Users")
+                    b.HasOne("Library_Juggle.Data_Access_Layer.Entities.User", "Users")
                         .WithMany("Loans")
                         .HasForeignKey("UsersUserId");
 
@@ -239,9 +239,9 @@ namespace Library_Juggle.Migrations
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("Library_Juggle.model.User", b =>
+            modelBuilder.Entity("Library_Juggle.Data_Access_Layer.Entities.User", b =>
                 {
-                    b.HasOne("Library_Juggle.model.Role", "Role")
+                    b.HasOne("Library_Juggle.Data_Access_Layer.Entities.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -250,17 +250,17 @@ namespace Library_Juggle.Migrations
                     b.Navigation("Role");
                 });
 
-            modelBuilder.Entity("Library_Juggle.model.Genre", b =>
+            modelBuilder.Entity("Library_Juggle.Data_Access_Layer.Entities.Genre", b =>
                 {
                     b.Navigation("Books");
                 });
 
-            modelBuilder.Entity("Library_Juggle.model.Role", b =>
+            modelBuilder.Entity("Library_Juggle.Data_Access_Layer.Entities.Role", b =>
                 {
                     b.Navigation("Users");
                 });
 
-            modelBuilder.Entity("Library_Juggle.model.User", b =>
+            modelBuilder.Entity("Library_Juggle.Data_Access_Layer.Entities.User", b =>
                 {
                     b.Navigation("Books");
 

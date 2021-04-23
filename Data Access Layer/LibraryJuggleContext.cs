@@ -8,26 +8,25 @@ namespace Library_Juggle.Data_Access_Layer
 {
     public partial class LibraryJuggleContext : DbContext
     {
-        private string Connection { get; } = ConfigurationManager.ConnectionStrings["default connection"].ConnectionString;
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var connection = ConfigurationManager.ConnectionStrings["default connection"].ConnectionString;
+            optionsBuilder.UseSqlServer(connection);
+        }
+        public LibraryJuggleContext()
+        {
+        }
+        public LibraryJuggleContext(DbContextOptions options)
+            : base(options)
+        {
+        }
 
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<Loan> Loans { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            try
-            {
-                optionsBuilder.UseSqlServer(Connection);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -60,9 +59,9 @@ namespace Library_Juggle.Data_Access_Layer
                     {
                         UserId = 1,
                         Name = "Library Admin",
-                        Email = "admin@libraryjungle.com",
+                        Email = "admin@libraryjuggle.com",
                         Password = StaticMethods.CreateMd5("library123"),
-                        Token = StaticMethods.CreateMd5("admin@libraryjungle.com"),
+                        Token = StaticMethods.CreateMd5("admin@libraryjuggle.com"),
                         RoleId = 1
                     });
                 });
