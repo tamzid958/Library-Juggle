@@ -34,15 +34,14 @@ namespace Library_Juggle.Data_Access_Layer
             password = StaticMethods.CreateMd5(password);
             var currentUser = _db.Users.Include(r => r.Role).FirstOrDefault(u => u.Email == email && u.Password == password);
             if (currentUser == null) return null;
-            var json = JsonSerializer.Serialize(currentUser.Token);
-            File.WriteAllText(@"cookie.json", json);
+            File.WriteAllText(@"cookie.json", currentUser.Token);
             return currentUser;
         }
 
         public User CurrentUser()
         {
             if (!File.Exists(@"cookie.json")) return null;
-            var token = File.ReadAllText(@"cookie.json").Trim('"');
+            var token = File.ReadAllText(@"cookie.json");
             return _db.Users.Include(r => r.Role).FirstOrDefault(u => u.Token == token);
         }
 
