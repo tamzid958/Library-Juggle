@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using System.Text;
@@ -10,7 +11,7 @@ namespace Library_Juggle.Business_Logic_Layer
     {
         public static string CreateMd5(string input)
         {
-            
+
             using var md5 = MD5.Create();
             var inputBytes = Encoding.ASCII.GetBytes(input);
             var hashBytes = md5.ComputeHash(inputBytes);
@@ -19,6 +20,7 @@ namespace Library_Juggle.Business_Logic_Layer
             {
                 sb.Append(t.ToString("X2"));
             }
+
             return sb.ToString();
         }
 
@@ -28,12 +30,11 @@ namespace Library_Juggle.Business_Logic_Layer
             Validator.TryValidateObject(entity, new ValidationContext(entity, null, null), errorList);
             return errorList.Count != 0 ? errorList : null;
         }
-        public static int ParseKeyValuePairObject(object obj)
+
+        public static KeyValuePair<T, TV> CastFromObjectToKeyValuePair<T, TV>(object obj)
         {
-            var tempString = obj.ToString();
-            var start = tempString!.IndexOf("[", Ordinal) + 1;
-            var end = tempString!.IndexOf(",", start, Ordinal);
-            return int.Parse(tempString![start..end]);
+            return (KeyValuePair<T, TV>) obj;
         }
+
     }
 }

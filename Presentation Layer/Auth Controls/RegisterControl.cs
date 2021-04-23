@@ -10,10 +10,12 @@ namespace Library_Juggle.Presentation_Layer.Auth_Controls
     public partial class RegisterControl : UserControl
     {
         private readonly UserDataAccess _user;
+        private readonly RoleDataAccess _role;
         public RegisterControl()
         {
             InitializeComponent();
             _user = new UserDataAccess();
+            _role = new RoleDataAccess();
         }
 
         private void SignInLink_Click(object sender, EventArgs e)
@@ -62,7 +64,7 @@ namespace Library_Juggle.Presentation_Layer.Auth_Controls
                 Email = email,
                 Password = StaticMethods.CreateMd5(password),
                 Token = StaticMethods.CreateMd5(email),
-                RoleId = 2
+                RoleId = _role.GetRoleByName("Student")
             };
 
 

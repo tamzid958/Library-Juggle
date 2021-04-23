@@ -51,7 +51,7 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
             RoleComboBox.SelectedIndex = 0;
             foreach (var user in _users)
             {
-                UserComboBox.Items.Add(new KeyValuePair<int, string>(user.UserId, user.Email) + " => " + user.Role.RoleName);
+                UserComboBox.Items.Add(new KeyValuePair<int, string>(user.UserId, user.Email));
             }
 
             foreach (var role in _roles)
@@ -67,8 +67,8 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
                || RoleComboBox.SelectedItem == null 
                || RoleComboBox.SelectedIndex == 0) return;
             
-            var userId = StaticMethods.ParseKeyValuePairObject(UserComboBox.SelectedItem);
-            var roleId = StaticMethods.ParseKeyValuePairObject(RoleComboBox.SelectedItem);
+            var userId = StaticMethods.CastFromObjectToKeyValuePair<int, string>(UserComboBox.SelectedItem).Key;
+            var roleId = StaticMethods.CastFromObjectToKeyValuePair<int, string>(RoleComboBox.SelectedItem).Key;
             
             if (_user.GetUser(userId) == null) return; 
            _user.UpdateRole(userId, roleId);
