@@ -34,7 +34,7 @@ namespace Library_Juggle.view.admin_controls
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
             this.CheckBookList = new MetroFramework.Controls.MetroButton();
             this.LogOutButton = new MetroFramework.Controls.MetroButton();
-            this.AddLibrarianButton = new MetroFramework.Controls.MetroButton();
+            this.CheckUserButton = new MetroFramework.Controls.MetroButton();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.AdminDashboardPanel = new MetroFramework.Controls.MetroPanel();
             this.metroPanel1.SuspendLayout();
@@ -72,7 +72,7 @@ namespace Library_Juggle.view.admin_controls
             // 
             this.metroPanel3.Controls.Add(this.CheckBookList);
             this.metroPanel3.Controls.Add(this.LogOutButton);
-            this.metroPanel3.Controls.Add(this.AddLibrarianButton);
+            this.metroPanel3.Controls.Add(this.CheckUserButton);
             this.metroPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroPanel3.HorizontalScrollbarBarColor = true;
             this.metroPanel3.HorizontalScrollbarHighlightOnWheel = false;
@@ -114,16 +114,16 @@ namespace Library_Juggle.view.admin_controls
             this.LogOutButton.UseVisualStyleBackColor = false;
             this.LogOutButton.Click += new System.EventHandler(this.LogOutButton_Click);
             // 
-            // AddLibrarianButton
+            // CheckUserButton
             // 
-            this.AddLibrarianButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AddLibrarianButton.Location = new System.Drawing.Point(10, 10);
-            this.AddLibrarianButton.Name = "AddLibrarianButton";
-            this.AddLibrarianButton.Size = new System.Drawing.Size(180, 38);
-            this.AddLibrarianButton.TabIndex = 2;
-            this.AddLibrarianButton.Text = " Add Librarian";
-            this.AddLibrarianButton.UseSelectable = true;
-            this.AddLibrarianButton.Click += new System.EventHandler(this.AddLibrarianButton_Click);
+            this.CheckUserButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.CheckUserButton.Location = new System.Drawing.Point(10, 10);
+            this.CheckUserButton.Name = "CheckUserButton";
+            this.CheckUserButton.Size = new System.Drawing.Size(180, 38);
+            this.CheckUserButton.TabIndex = 2;
+            this.CheckUserButton.Text = "Check User List";
+            this.CheckUserButton.UseSelectable = true;
+            this.CheckUserButton.Click += new System.EventHandler(this.CheckUserListButton_Click);
             // 
             // metroPanel2
             // 
@@ -176,7 +176,7 @@ namespace Library_Juggle.view.admin_controls
         private MetroFramework.Controls.MetroPanel AdminDashboardPanel;
         private MetroFramework.Controls.MetroPanel metroPanel2;
         private MetroFramework.Controls.MetroPanel metroPanel3;
-        private MetroFramework.Controls.MetroButton AddLibrarianButton;
+        private MetroFramework.Controls.MetroButton CheckUserButton;
         private MetroFramework.Controls.MetroButton LogOutButton;
         private MetroFramework.Controls.MetroButton metroButton1;
         private MetroFramework.Controls.MetroButton CheckBookList;

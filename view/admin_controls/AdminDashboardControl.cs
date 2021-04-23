@@ -28,7 +28,7 @@ namespace Library_Juggle.view.admin_controls
             {
                 AdminName.Text = currentUser.Name;
             }
-            AddLibrarianControl addLibrarian = new() { Dock = DockStyle.Fill };
+            ChangeUserRoleControl addLibrarian = new() { Dock = DockStyle.Fill };
             AdminDashboardPanel.Controls.Add(addLibrarian);
 
         }
@@ -41,10 +41,10 @@ namespace Library_Juggle.view.admin_controls
             Parent.Controls.Add(login);
         }
 
-        private void AddLibrarianButton_Click(object sender, System.EventArgs e)
+        private void CheckUserListButton_Click(object sender, System.EventArgs e)
         {
             AdminDashboardPanel.Controls.Clear();
-            AddLibrarianControl addLibrarian = new() { Dock = DockStyle.Fill };
+            ChangeUserRoleControl addLibrarian = new() { Dock = DockStyle.Fill };
             AdminDashboardPanel.Controls.Add(addLibrarian);
         }
 
