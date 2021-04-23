@@ -47,7 +47,7 @@ namespace Library_Juggle.Presentation_Layer.Auth_Controls
                     Parent.Controls.Add(adminDashboard);
                     break;
                 case "Librarian":
-                    LibrarianDashboardControl librarianDashboard = new() {Dock = DockStyle.Fill};
+                    LibrarianDashboardControl librarianDashboard = new() { Dock = DockStyle.Fill };
                     Parent.Controls.Add(librarianDashboard);
                     break;
                 case "Student":
