@@ -37,7 +37,7 @@ namespace Library_Juggle.view.admin_controls
             // 
             // LogOutButton
             // 
-            this.LogOutButton.Location = new System.Drawing.Point(30, 314);
+            this.LogOutButton.Location = new System.Drawing.Point(30, 327);
             this.LogOutButton.Name = "LogOutButton";
             this.LogOutButton.Size = new System.Drawing.Size(131, 28);
             this.LogOutButton.TabIndex = 3;
@@ -48,7 +48,7 @@ namespace Library_Juggle.view.admin_controls
             // AdminName
             // 
             this.AdminName.AutoSize = true;
-            this.AdminName.Location = new System.Drawing.Point(30, 60);
+            this.AdminName.Location = new System.Drawing.Point(30, 52);
             this.AdminName.Name = "AdminName";
             this.AdminName.Size = new System.Drawing.Size(111, 19);
             this.AdminName.TabIndex = 2;
