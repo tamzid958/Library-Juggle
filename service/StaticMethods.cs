@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using static System.StringComparison;
 
 namespace Library_Juggle.service
 {
@@ -29,6 +29,13 @@ namespace Library_Juggle.service
             var errorList = new List<ValidationResult>();
             Validator.TryValidateObject(entity, new ValidationContext(entity, null, null), errorList);
             return errorList.Count != 0 ? errorList : null;
+        }
+        public static int ParseKeyValuePairObject(object obj)
+        {
+            var tempString = obj.ToString();
+            var start = tempString!.IndexOf("[", Ordinal) + 1;
+            var end = tempString!.IndexOf(",", start, Ordinal);
+            return int.Parse(tempString![start..end]);
         }
     }
 }

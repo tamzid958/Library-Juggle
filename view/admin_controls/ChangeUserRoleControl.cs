@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Library_Juggle.controller;
 using Library_Juggle.model;
+using Library_Juggle.service;
 using MetroFramework;
 
 namespace Library_Juggle.view.admin_controls
@@ -71,16 +72,10 @@ namespace Library_Juggle.view.admin_controls
                || UserComboBox.SelectedIndex == 0 
                || RoleComboBox.SelectedItem == null 
                || RoleComboBox.SelectedIndex == 0) return;
-            var userSelected = UserComboBox.SelectedItem.ToString();
-            var roleSelected = RoleComboBox.SelectedItem.ToString();
-            var start = userSelected!.IndexOf("[", StringComparison.Ordinal) + 1;
-            var end = userSelected!.IndexOf(",", start, StringComparison.Ordinal);
-            var userId = int.Parse(userSelected![start..end]);
-
-            start = roleSelected!.IndexOf("[", StringComparison.Ordinal) + 1;
-            end = roleSelected!.IndexOf(",", start, StringComparison.Ordinal);
-            var roleId = int.Parse(roleSelected![start..end]);
-
+            
+            var userId = StaticMethods.ParseKeyValuePairObject(UserComboBox.SelectedItem);
+            var roleId = StaticMethods.ParseKeyValuePairObject(RoleComboBox.SelectedItem);
+            
             if (_user.GetUser(userId) == null) return; 
            _user.UpdateRole(userId, roleId);
            try
@@ -93,5 +88,7 @@ namespace Library_Juggle.view.admin_controls
            }
             InitState();
         }
+
+      
     }
 }
