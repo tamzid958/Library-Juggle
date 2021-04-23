@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Library_Juggle.Data_Access_Layer;
 using Library_Juggle.Presentation_Layer.Admin_Controls;
+using Library_Juggle.Presentation_Layer.Librarian_Controls;
 using Library_Juggle.Presentation_Layer.Student_Controls;
 
 namespace Library_Juggle.Presentation_Layer.Auth_Controls
@@ -45,9 +46,16 @@ namespace Library_Juggle.Presentation_Layer.Auth_Controls
                     AdminDashboardControl adminDashboard = new() { Dock = DockStyle.Fill };
                     Parent.Controls.Add(adminDashboard);
                     break;
+                case "Librarian":
+                    LibrarianDashboardControl librarianDashboard = new() {Dock = DockStyle.Fill};
+                    Parent.Controls.Add(librarianDashboard);
+                    break;
                 case "Student":
                     StudentDashboardControl studentDashboard = new() { Dock = DockStyle.Fill };
                     Parent.Controls.Add(studentDashboard);
+                    break;
+                default:
+                    Application.Exit();
                     break;
             }
         }
