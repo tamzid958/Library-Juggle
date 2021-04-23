@@ -64,6 +64,8 @@ namespace Library_Juggle.view.auth_controls
                 Token = StaticMethods.CreateMd5(email),
                 RoleId = 2
             };
+
+
             if (user.GetModelErrors() == null)
             {
                 _user.CreateUser(user);

@@ -49,5 +49,24 @@ namespace Library_Juggle.controller
             var token = File.ReadAllText(@"cookie.json").Trim('"');
             return _db.Users.Include(r => r.Role).FirstOrDefault(u => u.Token == token);
         }
+
+        public List<User> GetAllUsers()
+        {
+            return _db.Users.Include(r => r.Role).ToList();
+        }
+
+
+        public User GetUser(int userId)
+        {
+           return _db.Users.FirstOrDefault(u => u.UserId == userId);
+        }
+
+        public void UpdateRole(int userId, int roleId)
+        {
+            var currentUser = _db.Users.First(u => u.UserId == userId);
+            currentUser.RoleId = roleId;
+            _db.Users.Update(currentUser);
+            _db.SaveChangesAsync();
+        }
     }
 }
