@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Library_Juggle.service
 {
-    static class StaticMethods
+    internal static class StaticMethods
     {
         public static string CreateMd5(string input)
         {
