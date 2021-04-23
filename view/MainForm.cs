@@ -1,13 +1,47 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
+using Library_Juggle.controller;
+using Library_Juggle.view.admin_controls;
+using Library_Juggle.view.auth_controls;
+using Library_Juggle.view.student_controls;
+using MetroFramework;
 using MetroFramework.Forms;
 namespace Library_Juggle.view
 {
     public partial class MainForm : MetroForm
     {
+        private readonly UserController _user;
         public MainForm()
         {
             InitializeComponent();
+            _user = new UserController();
+            InitState();
+        }
+
+        private void InitState()
+        {
+            var currentUser = _user.CurrentUser();
+            if (currentUser == null)
+            {
+                LoginControl login = new();
+                Controls.Add(login);
+            }
+            else
+            {
+                switch (currentUser.Role.RoleName)
+                {
+                    case "Admin":
+                        AdminDashboardControl adminDashboard = new();
+                        Controls.Add(adminDashboard);
+                        break;
+                    case "Student":
+                        StudentDashboardControl studentDashboard = new();
+                        Controls.Add(studentDashboard);
+                        break;
+                }
+            }
         }
        
     }

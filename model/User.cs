@@ -20,10 +20,7 @@ namespace Library_Juggle.model
         public string Password { set; get; }
 
         [Required]
-        [StringLength(255, ErrorMessage = "Must be between 5 and 255 characters", MinimumLength = 5)]
-        [DataType(DataType.Password)]
-        [Compare("Password")]
-        public string ConfirmPassword { set; get; }
+        public string Token { set; get; }
 
         [Required]
         public int RoleId { set; get; }

@@ -5,23 +5,22 @@ using Library_Juggle.model;
 using Library_Juggle.service;
 using MetroFramework;
 
-namespace Library_Juggle.view
+namespace Library_Juggle.view.auth_controls
 {
     public partial class RegisterControl : UserControl
     {
         private readonly UserController _user;
-        private readonly LoginControl _login;
-      public RegisterControl()
+        public RegisterControl()
         {
             InitializeComponent();
             _user = new UserController();
-            _login = new LoginControl();
         }
 
         private void SignInLink_Click(object sender, EventArgs e)
         {
+            LoginControl login = new();
             Hide();
-            Parent.Controls.Add(_login);
+            Parent.Controls.Add(login);
         }
 
         private void RegisterButton_Click(object sender, EventArgs e)
@@ -62,15 +61,23 @@ namespace Library_Juggle.view
                 Name = name,
                 Email = email,
                 Password = StaticMethods.CreateMd5(password),
-                ConfirmPassword = StaticMethods.CreateMd5(confirmPassword),
+                Token = StaticMethods.CreateMd5(email),
                 RoleId = 2
             };
             if (user.GetModelErrors() == null)
             {
                 _user.CreateUser(user);
-                MessageBox.Show(@"User Registered!", @"Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
+                    MetroMessageBox.Show(this,@"User Registered!", @"Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception);
+                }
+                LoginControl login = new();
                 Hide();
-                Parent.Controls.Add(_login);
+                Parent.Controls.Add(login);
             }
             else
             {

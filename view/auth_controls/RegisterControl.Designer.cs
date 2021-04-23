@@ -1,5 +1,5 @@
 ﻿
-namespace Library_Juggle.view
+namespace Library_Juggle.view.auth_controls
 {
     partial class RegisterControl
     {
