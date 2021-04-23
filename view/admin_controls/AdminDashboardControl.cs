@@ -43,8 +43,16 @@ namespace Library_Juggle.view.admin_controls
 
         private void AddLibrarianButton_Click(object sender, System.EventArgs e)
         {
+            AdminDashboardPanel.Controls.Clear();
             AddLibrarianControl addLibrarian = new() { Dock = DockStyle.Fill };
             AdminDashboardPanel.Controls.Add(addLibrarian);
+        }
+
+        private void CheckBookList_Click(object sender, System.EventArgs e)
+        {
+            AdminDashboardPanel.Controls.Clear();
+            BooksViewControl booksView = new() { Dock = DockStyle.Fill };
+            AdminDashboardPanel.Controls.Add(booksView);
         }
     }
 }
