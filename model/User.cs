@@ -1,9 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Library_Juggle.model
 {
     public class User
     {
+        public User()
+        {
+            Books = new HashSet<Book>();
+            Genres = new HashSet<Genre>();
+            Loans = new HashSet<Loan>();
+        }
+
         [Key]
         public int UserId { set; get; }
 
@@ -26,5 +34,8 @@ namespace Library_Juggle.model
         public int RoleId { set; get; }
 
         public virtual Role Role { set; get; }
+        public ICollection<Book> Books { set; get; }
+        public ICollection<Genre> Genres { set; get; }
+        public ICollection<Loan> Loans { set; get; }
     }
 }

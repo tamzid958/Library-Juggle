@@ -30,7 +30,7 @@ namespace Library_Juggle.view.student_controls
             if (currentUser == null)
             {
                 Hide();
-                LoginControl login = new();
+                LoginControl login = new() { Dock = DockStyle.Fill };
                 Parent.Controls.Add(login);
             }
             else
@@ -43,7 +43,7 @@ namespace Library_Juggle.view.student_controls
         {
             File.Delete(@"cookie.json");
             Hide();
-            LoginControl login = new();
+            LoginControl login = new() { Dock = DockStyle.Fill };
             Parent.Controls.Add(login);
         }
     }

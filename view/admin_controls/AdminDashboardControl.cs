@@ -21,7 +21,7 @@ namespace Library_Juggle.view.admin_controls
             if (currentUser == null)
             {
                 Hide();
-                LoginControl login = new();
+                LoginControl login = new() { Dock = DockStyle.Fill };
                 Parent.Controls.Add(login);
             }
             else
@@ -30,11 +30,12 @@ namespace Library_Juggle.view.admin_controls
             }
 
         }
+
         private void LogOutButton_Click(object sender, System.EventArgs e)
         {
             File.Delete(@"cookie.json");
             Hide();
-            LoginControl login = new();
+            LoginControl login = new() { Dock = DockStyle.Fill };
             Parent.Controls.Add(login);
         }
     }

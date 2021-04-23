@@ -195,9 +195,9 @@ namespace Library_Juggle.view.auth_controls
             this.ErrorData.ForeColor = System.Drawing.Color.DarkRed;
             this.ErrorData.FormattingEnabled = true;
             this.ErrorData.ItemHeight = 21;
-            this.ErrorData.Location = new System.Drawing.Point(213, 253);
+            this.ErrorData.Location = new System.Drawing.Point(213, 358);
             this.ErrorData.Name = "ErrorData";
-            this.ErrorData.Size = new System.Drawing.Size(554, 168);
+            this.ErrorData.Size = new System.Drawing.Size(554, 63);
             this.ErrorData.TabIndex = 27;
             // 
             // RegisterControl

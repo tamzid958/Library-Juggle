@@ -38,7 +38,7 @@ namespace Library_Juggle.view.student_controls
             // StudentName
             // 
             this.StudentName.AutoSize = true;
-            this.StudentName.Location = new System.Drawing.Point(28, 52);
+            this.StudentName.Location = new System.Drawing.Point(28, 51);
             this.StudentName.Name = "StudentName";
             this.StudentName.Size = new System.Drawing.Size(116, 19);
             this.StudentName.TabIndex = 0;
@@ -46,12 +46,17 @@ namespace Library_Juggle.view.student_controls
             // 
             // LogOutButton
             // 
-            this.LogOutButton.Location = new System.Drawing.Point(28, 326);
+            this.LogOutButton.BackColor = System.Drawing.Color.DarkRed;
+            this.LogOutButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.LogOutButton.Location = new System.Drawing.Point(28, 73);
             this.LogOutButton.Name = "LogOutButton";
-            this.LogOutButton.Size = new System.Drawing.Size(131, 28);
+            this.LogOutButton.Size = new System.Drawing.Size(95, 28);
             this.LogOutButton.TabIndex = 1;
             this.LogOutButton.Text = "Sign Out";
+            this.LogOutButton.UseCustomBackColor = true;
+            this.LogOutButton.UseCustomForeColor = true;
             this.LogOutButton.UseSelectable = true;
+            this.LogOutButton.UseVisualStyleBackColor = false;
             this.LogOutButton.Click += new System.EventHandler(this.LogOutButton_Click);
             // 
             // metroPanel1

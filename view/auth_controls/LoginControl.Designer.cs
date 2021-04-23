@@ -152,7 +152,7 @@ namespace Library_Juggle.view.auth_controls
             this.ErrorData.ItemHeight = 21;
             this.ErrorData.Location = new System.Drawing.Point(28, 0);
             this.ErrorData.Name = "ErrorData";
-            this.ErrorData.Size = new System.Drawing.Size(399, 84);
+            this.ErrorData.Size = new System.Drawing.Size(399, 42);
             this.ErrorData.TabIndex = 28;
             // 
             // metroPanel1
@@ -162,9 +162,9 @@ namespace Library_Juggle.view.auth_controls
             this.metroPanel1.HorizontalScrollbarBarColor = true;
             this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel1.HorizontalScrollbarSize = 10;
-            this.metroPanel1.Location = new System.Drawing.Point(0, 321);
+            this.metroPanel1.Location = new System.Drawing.Point(0, 369);
             this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(499, 100);
+            this.metroPanel1.Size = new System.Drawing.Size(499, 52);
             this.metroPanel1.TabIndex = 29;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;

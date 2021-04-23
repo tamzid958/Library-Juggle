@@ -18,7 +18,7 @@ namespace Library_Juggle.view.auth_controls
 
         private void SignInLink_Click(object sender, EventArgs e)
         {
-            LoginControl login = new();
+            LoginControl login = new() { Dock = DockStyle.Fill };
             Hide();
             Parent.Controls.Add(login);
         }
@@ -75,7 +75,7 @@ namespace Library_Juggle.view.auth_controls
                 {
                     Console.WriteLine(exception);
                 }
-                LoginControl login = new();
+                LoginControl login = new() { Dock = DockStyle.Fill };
                 Hide();
                 Parent.Controls.Add(login);
             }

@@ -29,21 +29,11 @@ namespace Library_Juggle.view.admin_controls
         /// </summary>
         private void InitializeComponent()
         {
-            this.LogOutButton = new MetroFramework.Controls.MetroButton();
             this.AdminName = new MetroFramework.Controls.MetroLabel();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.LogOutButton = new MetroFramework.Controls.MetroButton();
             this.metroPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // LogOutButton
-            // 
-            this.LogOutButton.Location = new System.Drawing.Point(30, 327);
-            this.LogOutButton.Name = "LogOutButton";
-            this.LogOutButton.Size = new System.Drawing.Size(131, 28);
-            this.LogOutButton.TabIndex = 3;
-            this.LogOutButton.Text = "Sign Out";
-            this.LogOutButton.UseSelectable = true;
-            this.LogOutButton.Click += new System.EventHandler(this.LogOutButton_Click);
             // 
             // AdminName
             // 
@@ -70,6 +60,21 @@ namespace Library_Juggle.view.admin_controls
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
             // 
+            // LogOutButton
+            // 
+            this.LogOutButton.BackColor = System.Drawing.Color.DarkRed;
+            this.LogOutButton.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.LogOutButton.Location = new System.Drawing.Point(30, 74);
+            this.LogOutButton.Name = "LogOutButton";
+            this.LogOutButton.Size = new System.Drawing.Size(95, 28);
+            this.LogOutButton.TabIndex = 4;
+            this.LogOutButton.Text = "Sign Out";
+            this.LogOutButton.UseCustomBackColor = true;
+            this.LogOutButton.UseCustomForeColor = true;
+            this.LogOutButton.UseSelectable = true;
+            this.LogOutButton.UseVisualStyleBackColor = false;
+            this.LogOutButton.Click += new System.EventHandler(this.LogOutButton_Click);
+            // 
             // AdminDashboardControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -84,9 +89,8 @@ namespace Library_Juggle.view.admin_controls
         }
 
         #endregion
-
-        private MetroFramework.Controls.MetroButton LogOutButton;
         private MetroFramework.Controls.MetroLabel AdminName;
         private MetroFramework.Controls.MetroPanel metroPanel1;
+        private MetroFramework.Controls.MetroButton LogOutButton;
     }
 }

@@ -21,9 +21,9 @@ namespace Library_Juggle.view.auth_controls
 
         private void SignUpLink_Click(object sender, EventArgs e)
         {
-            RegisterControl register = new();
-            this.Hide();
-            this.Parent.Controls.Add(register);
+            RegisterControl register = new() { Dock = DockStyle.Fill };
+            Hide();
+            Parent.Controls.Add(register);
         }
 
         private void LoginButton_Click(object sender, EventArgs e)
@@ -42,16 +42,16 @@ namespace Library_Juggle.view.auth_controls
                 ErrorData.Items.Add("Invalid Cardinalities");
                 return;
             }
-            this.Hide();
+            Hide();
             switch (currentUser.Role.RoleName)
             {
                 case "Admin":
-                    AdminDashboardControl adminDashboard = new();
-                    this.Parent.Controls.Add(adminDashboard);
+                    AdminDashboardControl adminDashboard = new() { Dock = DockStyle.Fill };
+                    Parent.Controls.Add(adminDashboard);
                     break;
                 case "Student":
-                    StudentDashboardControl studentDashboard = new();
-                    this.Parent.Controls.Add(studentDashboard);
+                    StudentDashboardControl studentDashboard = new() { Dock = DockStyle.Fill };
+                    Parent.Controls.Add(studentDashboard);
                     break;
             }
         }
