@@ -63,7 +63,6 @@ namespace Library_Juggle.Presentation_Layer.Auth_Controls
                 Name = name,
                 Email = email,
                 Password = StaticMethods.CreateMd5(password),
-                Token = StaticMethods.CreateMd5(email),
                 RoleId = _role.GetRoleByName("Student")
             };
 

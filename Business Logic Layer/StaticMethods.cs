@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Security.Cryptography;
@@ -8,6 +9,12 @@ namespace Library_Juggle.Business_Logic_Layer
 {
     internal static class StaticMethods
     {
+        public static string CreateToken()
+        {
+            var uuid = Guid.NewGuid();
+            return uuid.ToString();
+        }
+
         public static string CreateMd5(string input)
         {
 
@@ -37,7 +44,7 @@ namespace Library_Juggle.Business_Logic_Layer
 
         public static void LogOutUser()
         {
-            if (File.Exists(@"cookie.json")) File.Delete(@"cookie.json");
+            if (File.Exists(@"cookie.key")) File.Delete(@"cookie.key");
         }
 
     }

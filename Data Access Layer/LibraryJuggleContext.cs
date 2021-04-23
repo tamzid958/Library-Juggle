@@ -61,7 +61,7 @@ namespace Library_Juggle.Data_Access_Layer
                         Name = "Library Admin",
                         Email = "admin@libraryjuggle.com",
                         Password = StaticMethods.CreateMd5("library123"),
-                        Token = StaticMethods.CreateMd5("admin@libraryjuggle.com"),
+                        Token = StaticMethods.CreateToken(),
                         RoleId = 1
                     });
                 });

@@ -194,7 +194,7 @@ namespace Library_Juggle.Migrations
                             Name = "Library Admin",
                             Password = "CD6FA8ABA065897E5A56061882350B66",
                             RoleId = 1,
-                            Token = "D6824EC7935B32990AA19B792426E74B"
+                            Token = "2919defb-3e39-496d-929e-200e2dff9a66"
                         });
                 });
 

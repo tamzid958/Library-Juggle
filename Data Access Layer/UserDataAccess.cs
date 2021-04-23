@@ -19,6 +19,7 @@ namespace Library_Juggle.Data_Access_Layer
 
         public void CreateUser(User user)
         {
+            user.Token = StaticMethods.CreateToken();
             _db.Users.AddAsync(user);
             _db.SaveChangesAsync();
         }
@@ -34,14 +35,14 @@ namespace Library_Juggle.Data_Access_Layer
             password = StaticMethods.CreateMd5(password);
             var currentUser = _db.Users.Include(r => r.Role).FirstOrDefault(u => u.Email == email && u.Password == password);
             if (currentUser == null) return null;
-            File.WriteAllText(@"cookie.json", currentUser.Token);
+            File.WriteAllText(@"cookie.key", currentUser.Token);
             return currentUser;
         }
 
         public User CurrentUser()
         {
-            if (!File.Exists(@"cookie.json")) return null;
-            var token = File.ReadAllText(@"cookie.json");
+            if (!File.Exists(@"cookie.key")) return null;
+            var token = File.ReadAllText(@"cookie.key");
             return _db.Users.Include(r => r.Role).FirstOrDefault(u => u.Token == token);
         }
 

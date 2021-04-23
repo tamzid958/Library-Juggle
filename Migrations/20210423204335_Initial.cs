@@ -142,7 +142,7 @@ namespace Library_Juggle.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "Email", "Name", "Password", "RoleId", "Token" },
-                values: new object[] { 1, "admin@libraryjuggle.com", "Library Admin", "CD6FA8ABA065897E5A56061882350B66", 1, "D6824EC7935B32990AA19B792426E74B" });
+                values: new object[] { 1, "admin@libraryjuggle.com", "Library Admin", "CD6FA8ABA065897E5A56061882350B66", 1, "2919defb-3e39-496d-929e-200e2dff9a66" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_GenreId",
