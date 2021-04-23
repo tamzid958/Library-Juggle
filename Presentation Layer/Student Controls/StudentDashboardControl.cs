@@ -2,17 +2,17 @@
 using System.IO;
 using System.Windows.Forms;
 using Library_Juggle.Data_Access_Layer;
-using Library_Juggle.Presentation_Layer.auth_controls;
+using Library_Juggle.Presentation_Layer.Auth_Controls;
 
-namespace Library_Juggle.Presentation_Layer.student_controls
+namespace Library_Juggle.Presentation_Layer.Student_Controls
 {
     public partial class StudentDashboardControl : UserControl
     {
-        private readonly UserController _user; 
+        private readonly UserDataAccess _user; 
         public StudentDashboardControl()
         {
             InitializeComponent();
-            _user = new UserController();
+            _user = new UserDataAccess();
             InitState();
         }
 

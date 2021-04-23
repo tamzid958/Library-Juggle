@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Windows.Forms;
 using Library_Juggle.Data_Access_Layer;
-using Library_Juggle.Presentation_Layer.admin_controls;
-using Library_Juggle.Presentation_Layer.student_controls;
+using Library_Juggle.Presentation_Layer.Admin_Controls;
+using Library_Juggle.Presentation_Layer.Student_Controls;
 
-namespace Library_Juggle.Presentation_Layer.auth_controls
+namespace Library_Juggle.Presentation_Layer.Auth_Controls
 {
     public partial class LoginControl : UserControl
     {
-        private readonly UserController _user;
+        private readonly UserDataAccess _user;
         public LoginControl()
         {
             InitializeComponent();
-            _user = new UserController();
+            _user = new UserDataAccess();
         }
 
         private void SignUpLink_Click(object sender, EventArgs e)

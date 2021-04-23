@@ -4,11 +4,11 @@ using Library_Juggle.Data_Access_Layer.Entities;
 
 namespace Library_Juggle.Data_Access_Layer
 {
-    public class BookController
+    public class BookDataAccess
     {
         private readonly LibraryJuggleContext _db;
 
-        public BookController()
+        public BookDataAccess()
         {
             _db = new LibraryJuggleContext();
         }

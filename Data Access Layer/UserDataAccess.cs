@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Library_Juggle.Data_Access_Layer
 {
-     public class UserController
+     public class UserDataAccess
     {
         private readonly LibraryJuggleContext _db;
 
-        public UserController()
+        public UserDataAccess()
         {
             _db = new LibraryJuggleContext();
         }

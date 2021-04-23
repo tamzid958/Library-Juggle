@@ -1,5 +1,5 @@
 ﻿
-namespace Library_Juggle.Presentation_Layer.auth_controls
+namespace Library_Juggle.Presentation_Layer.Auth_Controls
 {
     partial class LoginControl
     {

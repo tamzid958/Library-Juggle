@@ -1,15 +1,15 @@
 ﻿using System.Windows.Forms;
 using Library_Juggle.Data_Access_Layer;
 
-namespace Library_Juggle.Presentation_Layer.admin_controls
+namespace Library_Juggle.Presentation_Layer.Admin_Controls
 {
     public partial class BooksViewControl : UserControl
     {
-        private readonly BookController _book;
+        private readonly BookDataAccess _book;
         public BooksViewControl()
         {
             InitializeComponent();
-            _book = new BookController();
+            _book = new BookDataAccess();
             InitState();
         }
 

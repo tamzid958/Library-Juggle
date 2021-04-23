@@ -1,5 +1,5 @@
 ﻿
-namespace Library_Juggle.Presentation_Layer.admin_controls
+namespace Library_Juggle.Presentation_Layer.Admin_Controls
 {
     partial class BooksViewControl
     {

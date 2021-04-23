@@ -5,15 +5,15 @@ using Library_Juggle.Data_Access_Layer;
 using Library_Juggle.Data_Access_Layer.Entities;
 using MetroFramework;
 
-namespace Library_Juggle.Presentation_Layer.auth_controls
+namespace Library_Juggle.Presentation_Layer.Auth_Controls
 {
     public partial class RegisterControl : UserControl
     {
-        private readonly UserController _user;
+        private readonly UserDataAccess _user;
         public RegisterControl()
         {
             InitializeComponent();
-            _user = new UserController();
+            _user = new UserDataAccess();
         }
 
         private void SignInLink_Click(object sender, EventArgs e)

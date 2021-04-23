@@ -1,7 +1,7 @@
 ﻿
-namespace Library_Juggle.Presentation_Layer.admin_controls
+namespace Library_Juggle.Presentation_Layer.Admin_Controls
 {
-    partial class ChangeUserRoleControl
+    partial class UsersViewControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -128,7 +128,7 @@ namespace Library_Juggle.Presentation_Layer.admin_controls
             this.Controls.Add(this.ChangeRoleButton);
             this.Controls.Add(this.UserComboBox);
             this.Controls.Add(this.UserDataGridView);
-            this.Name = "ChangeUserRoleControl";
+            this.Name = "UsersViewControl";
             this.Size = new System.Drawing.Size(567, 421);
             ((System.ComponentModel.ISupportInitialize)(this.UserDataGridView)).EndInit();
             this.ResumeLayout(false);

@@ -6,18 +6,18 @@ using Library_Juggle.Data_Access_Layer;
 using Library_Juggle.Data_Access_Layer.Entities;
 using MetroFramework;
 
-namespace Library_Juggle.Presentation_Layer.admin_controls
+namespace Library_Juggle.Presentation_Layer.Admin_Controls
 {
-    public partial class ChangeUserRoleControl : UserControl
+    public partial class UsersViewControl : UserControl
     {
-        private readonly UserController _user;
+        private readonly UserDataAccess _user;
         private readonly List<User> _users;
         private readonly List<Role> _roles;
-        public ChangeUserRoleControl()
+        public UsersViewControl()
         {
             InitializeComponent();
-            _user = new UserController();
-            var role = new RoleController();
+            _user = new UserDataAccess();
+            var role = new RoleDataAccess();
             _users = _user.GetAllUsers();
             _roles = role.GetAllRoles();
             InitState();

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace Library_Juggle.Presentation_Layer.librarian_controls
+namespace Library_Juggle.Presentation_Layer.Librarian_Controls
 {
     public partial class LibrarianDashboardControl : UserControl
     {

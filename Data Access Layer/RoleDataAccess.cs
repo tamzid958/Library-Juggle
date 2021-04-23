@@ -4,11 +4,11 @@ using Library_Juggle.Data_Access_Layer.Entities;
 
 namespace Library_Juggle.Data_Access_Layer
 {
-    public class RoleController
+    public class RoleDataAccess
     {
         private readonly LibraryJuggleContext _db;
 
-        public RoleController()
+        public RoleDataAccess()
         {
             _db = new LibraryJuggleContext();
         }

@@ -1,18 +1,18 @@
 ﻿using System.IO;
 using System.Windows.Forms;
 using Library_Juggle.Data_Access_Layer;
-using Library_Juggle.Presentation_Layer.auth_controls;
+using Library_Juggle.Presentation_Layer.Auth_Controls;
 
-namespace Library_Juggle.Presentation_Layer.admin_controls
+namespace Library_Juggle.Presentation_Layer.Admin_Controls
 {
     public partial class AdminDashboardControl : UserControl
     {
 
-        private readonly UserController _user;
+        private readonly UserDataAccess _user;
         public AdminDashboardControl()
         {
             InitializeComponent();
-            _user = new UserController();
+            _user = new UserDataAccess();
             InitState();
         }
         private void InitState()
@@ -28,7 +28,7 @@ namespace Library_Juggle.Presentation_Layer.admin_controls
             {
                 AdminName.Text = currentUser.Name;
             }
-            ChangeUserRoleControl addLibrarian = new() { Dock = DockStyle.Fill };
+            UsersViewControl addLibrarian = new() { Dock = DockStyle.Fill };
             AdminDashboardPanel.Controls.Add(addLibrarian);
 
         }
@@ -44,7 +44,7 @@ namespace Library_Juggle.Presentation_Layer.admin_controls
         private void CheckUserListButton_Click(object sender, System.EventArgs e)
         {
             AdminDashboardPanel.Controls.Clear();
-            ChangeUserRoleControl addLibrarian = new() { Dock = DockStyle.Fill };
+            UsersViewControl addLibrarian = new() { Dock = DockStyle.Fill };
             AdminDashboardPanel.Controls.Add(addLibrarian);
         }
 
