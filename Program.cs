@@ -1,9 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Library_Juggle.view;
+using Library_Juggle.Presentation_Layer;
 
 namespace Library_Juggle
 {
