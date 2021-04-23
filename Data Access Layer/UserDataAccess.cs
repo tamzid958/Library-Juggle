@@ -58,7 +58,7 @@ namespace Library_Juggle.Data_Access_Layer
 
         public void UpdateRole(int userId, int roleId)
         {
-            var currentUser = _db.Users.First(u => u.UserId == userId);
+            var currentUser = GetUser(userId);
             currentUser.RoleId = roleId;
             _db.Users.Update(currentUser);
             _db.SaveChangesAsync();
