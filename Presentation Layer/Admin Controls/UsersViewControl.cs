@@ -95,8 +95,8 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
         {
             if (e.ColumnIndex != 9 || UserDataGridView.CurrentRow == null) return;
             var userId = int.Parse(StaticMethods.GridViewDataAccess(UserDataGridView, "UserId"));
-            var currentUser = _user.CurrentUser();
-           if (currentUser.UserId == userId || currentUser.Role.RoleName == "Admin") return; 
+            var selectedUser = _user.GetUser(userId);
+            if (_user.CurrentUser().UserId == userId || selectedUser.Role.RoleName == "Admin") return; 
             try
             {
                 _user.DeleteUser(userId);
