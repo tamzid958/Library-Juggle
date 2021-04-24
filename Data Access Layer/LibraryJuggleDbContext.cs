@@ -28,14 +28,12 @@ namespace Library_Juggle.Data_Access_Layer
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["default connection"].ConnectionString);
-            }
+                optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["default connection"]
+                    .ConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           
             modelBuilder.Entity<Role>(entity =>
             {
                 entity.HasData(
@@ -58,7 +56,7 @@ namespace Library_Juggle.Data_Access_Layer
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.HasIndex(e => e.Email).IsUnique(true);
+                entity.HasIndex(e => e.Email).IsUnique();
                 entity.HasData(new User
                 {
                     UserId = 1,

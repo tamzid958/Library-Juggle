@@ -10,9 +10,10 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
 {
     public partial class UsersViewControl : UserControl
     {
+        private readonly List<Role> _roles;
         private readonly UserDataAccess _user;
         private readonly List<User> _users;
-        private readonly List<Role> _roles;
+
         public UsersViewControl()
         {
             InitializeComponent();
@@ -25,11 +26,10 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
 
         private void InitState()
         {
-            
-            UserDataGridView.DataSource = null; 
+            UserDataGridView.DataSource = null;
             UserComboBox.Items.Clear();
             RoleComboBox.Items.Clear();
-            var roleComboBoxColumn = new DataGridViewComboBoxColumn()
+            var roleComboBoxColumn = new DataGridViewComboBoxColumn
             {
                 HeaderText = @"Role",
                 Name = @"UserDataGridRole",
@@ -40,48 +40,45 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
                 DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing
             };
             UserDataGridView.DataSource = _users;
-            UserDataGridView.Columns[0].Visible = UserDataGridView.Columns[3].Visible = UserDataGridView.Columns[4].Visible 
-                = UserDataGridView.Columns[5].Visible = UserDataGridView.Columns[6].Visible = UserDataGridView.Columns[7].Visible = false;
+            UserDataGridView.Columns[0].Visible = UserDataGridView.Columns[3].Visible =
+                UserDataGridView.Columns[4].Visible
+                    = UserDataGridView.Columns[5].Visible = UserDataGridView.Columns[6].Visible =
+                        UserDataGridView.Columns[7].Visible = false;
             UserDataGridView.Columns.Add(roleComboBoxColumn);
-            
+
             UserComboBox.Items.Add("Select User From List");
             UserComboBox.SelectedIndex = 0;
             RoleComboBox.Items.Add("Select Role From List");
             RoleComboBox.SelectedIndex = 0;
-            foreach (var user in _users)
-            {
-                UserComboBox.Items.Add(new KeyValuePair<int, string>(user.UserId, user.Email));
-            }
+            foreach (var user in _users) UserComboBox.Items.Add(new KeyValuePair<int, string>(user.UserId, user.Email));
 
             foreach (var role in _roles)
-            {
                 RoleComboBox.Items.Add(new KeyValuePair<int, string>(role.RoleId, role.RoleName));
-            }
         }
 
         private void ChangeRoleButton_Click(object sender, EventArgs e)
         {
-            if(UserComboBox.SelectedItem == null 
-               || UserComboBox.SelectedIndex == 0 
-               || RoleComboBox.SelectedItem == null 
-               || RoleComboBox.SelectedIndex == 0) return;
-            
+            if (UserComboBox.SelectedItem == null
+                || UserComboBox.SelectedIndex == 0
+                || RoleComboBox.SelectedItem == null
+                || RoleComboBox.SelectedIndex == 0) return;
+
             var userId = StaticMethods.CastFromObjectToKeyValuePair<int, string>(UserComboBox.SelectedItem).Key;
             var roleId = StaticMethods.CastFromObjectToKeyValuePair<int, string>(RoleComboBox.SelectedItem).Key;
-            
-            if (_user.GetUser(userId) == null) return; 
-           _user.UpdateRole(userId, roleId);
-           try
-           {
-               MetroMessageBox.Show(this, @"User Role Changed!", @"Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-           }
-           catch (Exception exception)
-           {
-               Console.WriteLine(exception);
-           }
+
+            if (_user.GetUser(userId) == null) return;
+            _user.UpdateRole(userId, roleId);
+            try
+            {
+                MetroMessageBox.Show(this, @"User Role Changed!", @"Information", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+
             InitState();
         }
-
-      
     }
 }

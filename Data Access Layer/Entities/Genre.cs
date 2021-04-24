@@ -11,11 +11,11 @@ namespace Library_Juggle.Data_Access_Layer.Entities
         {
             Books = new HashSet<Book>();
         }
-        [Key]
-        public int GenreId { get; set; }
-        
-        [Required]
-        public string GenreName { get; set; }
+
+        [Key] public int GenreId { get; set; }
+
+        [Required] public string GenreName { get; set; }
+
         public ICollection<Book> Books { get; set; }
     }
 }

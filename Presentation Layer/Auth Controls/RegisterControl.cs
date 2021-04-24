@@ -9,8 +9,9 @@ namespace Library_Juggle.Presentation_Layer.Auth_Controls
 {
     public partial class RegisterControl : UserControl
     {
-        private readonly UserDataAccess _user;
         private readonly RoleDataAccess _role;
+        private readonly UserDataAccess _user;
+
         public RegisterControl()
         {
             InitializeComponent();
@@ -20,7 +21,7 @@ namespace Library_Juggle.Presentation_Layer.Auth_Controls
 
         private void SignInLink_Click(object sender, EventArgs e)
         {
-            LoginControl login = new() { Dock = DockStyle.Fill };
+            LoginControl login = new() {Dock = DockStyle.Fill};
             Hide();
             Parent.Controls.Add(login);
         }
@@ -72,23 +73,21 @@ namespace Library_Juggle.Presentation_Layer.Auth_Controls
                 _user.CreateUser(user);
                 try
                 {
-                    MetroMessageBox.Show(this,@"User Registered!", @"Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MetroMessageBox.Show(this, @"User Registered!", @"Information", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
                 catch (Exception exception)
                 {
                     Console.WriteLine(exception);
                 }
-                LoginControl login = new() { Dock = DockStyle.Fill };
+
+                LoginControl login = new() {Dock = DockStyle.Fill};
                 Hide();
                 Parent.Controls.Add(login);
             }
             else
             {
-                foreach (var errors in user.GetModelErrors())
-                {
-                    ErrorData.Items.Add(errors.ErrorMessage!);
-                }
-
+                foreach (var errors in user.GetModelErrors()) ErrorData.Items.Add(errors.ErrorMessage!);
             }
         }
     }

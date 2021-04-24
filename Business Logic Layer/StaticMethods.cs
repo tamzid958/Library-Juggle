@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Security.Cryptography;
@@ -9,23 +8,13 @@ namespace Library_Juggle.Business_Logic_Layer
 {
     internal static class StaticMethods
     {
-        public static string CreateToken()
-        {
-            var uuid = Guid.NewGuid();
-            return uuid.ToString();
-        }
-
         public static string CreateMd5(string input)
         {
-
             using var md5 = MD5.Create();
             var inputBytes = Encoding.ASCII.GetBytes(input);
             var hashBytes = md5.ComputeHash(inputBytes);
             var sb = new StringBuilder();
-            foreach (var t in hashBytes)
-            {
-                sb.Append(t.ToString("X2"));
-            }
+            foreach (var t in hashBytes) sb.Append(t.ToString("X2"));
 
             return sb.ToString();
         }
@@ -46,6 +35,5 @@ namespace Library_Juggle.Business_Logic_Layer
         {
             if (File.Exists(@"cookie.key")) File.Delete(@"cookie.key");
         }
-
     }
 }

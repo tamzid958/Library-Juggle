@@ -12,11 +12,9 @@ namespace Library_Juggle.Data_Access_Layer.Entities
             Users = new HashSet<User>();
         }
 
-        [Key]
-        public int RoleId { get; set; }
-        
-        [Required]
-        public string RoleName { get; set; }
+        [Key] public int RoleId { get; set; }
+
+        [Required] public string RoleName { get; set; }
 
         public ICollection<User> Users { get; set; }
     }

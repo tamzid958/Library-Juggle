@@ -10,6 +10,7 @@ namespace Library_Juggle.Presentation_Layer.Auth_Controls
     public partial class LoginControl : UserControl
     {
         private readonly UserDataAccess _user;
+
         public LoginControl()
         {
             InitializeComponent();
@@ -18,7 +19,7 @@ namespace Library_Juggle.Presentation_Layer.Auth_Controls
 
         private void SignUpLink_Click(object sender, EventArgs e)
         {
-            RegisterControl register = new() { Dock = DockStyle.Fill };
+            RegisterControl register = new() {Dock = DockStyle.Fill};
             Hide();
             Parent.Controls.Add(register);
         }
@@ -33,25 +34,27 @@ namespace Library_Juggle.Presentation_Layer.Auth_Controls
                 ErrorData.Items.Add("Email & Password Required");
                 return;
             }
+
             var currentUser = _user.Authentication(email, password);
-            if(currentUser == null)
+            if (currentUser == null)
             {
                 ErrorData.Items.Add("Invalid Cardinalities");
                 return;
             }
+
             Hide();
             switch (currentUser.Role.RoleName)
             {
                 case "Admin":
-                    AdminDashboardControl adminDashboard = new() { Dock = DockStyle.Fill };
+                    AdminDashboardControl adminDashboard = new() {Dock = DockStyle.Fill};
                     Parent.Controls.Add(adminDashboard);
                     break;
                 case "Librarian":
-                    LibrarianDashboardControl librarianDashboard = new() { Dock = DockStyle.Fill };
+                    LibrarianDashboardControl librarianDashboard = new() {Dock = DockStyle.Fill};
                     Parent.Controls.Add(librarianDashboard);
                     break;
                 case "Student":
-                    StudentDashboardControl studentDashboard = new() { Dock = DockStyle.Fill };
+                    StudentDashboardControl studentDashboard = new() {Dock = DockStyle.Fill};
                     Parent.Controls.Add(studentDashboard);
                     break;
                 default:

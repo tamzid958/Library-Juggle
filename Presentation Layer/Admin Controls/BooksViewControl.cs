@@ -9,6 +9,7 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
     {
         private readonly List<Book> _books;
         private readonly List<Genre> _genres;
+
         public BooksViewControl()
         {
             InitializeComponent();
@@ -21,7 +22,7 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
 
         private void InitState()
         {
-            var genreComboBoxColumn = new DataGridViewComboBoxColumn()
+            var genreComboBoxColumn = new DataGridViewComboBoxColumn
             {
                 HeaderText = @"Genre",
                 Name = @"UserDataGridGenre",
@@ -33,7 +34,7 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
             };
 
             BookGridView.DataSource = _books;
-            BookGridView.Columns[0].Visible = BookGridView.Columns[5].Visible = 
+            BookGridView.Columns[0].Visible = BookGridView.Columns[5].Visible =
                 BookGridView.Columns[6].Visible = BookGridView.Columns[7].Visible = false;
             BookGridView.Columns[1].HeaderText = @"Title";
             BookGridView.Columns[2].HeaderText = @"Author";

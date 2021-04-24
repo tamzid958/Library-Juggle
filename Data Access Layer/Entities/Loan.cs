@@ -8,19 +8,13 @@ namespace Library_Juggle.Data_Access_Layer.Entities
 {
     public class Loan
     {
-        [Key]
-        public int LoanId { get; set; }
-        
-        [Required]
-        public DateTime DateIssued { get; set; }
+        [Key] public int LoanId { get; set; }
 
-        [Required]
-        [ForeignKey("User")]
-        public int UsersUserId { get; set; }
+        [Required] public DateTime DateIssued { get; set; }
 
-        [Required]
-        [ForeignKey("Book")]
-        public int BooksBookId { get; set; }
+        [Required] [ForeignKey("User")] public int UsersUserId { get; set; }
+
+        [Required] [ForeignKey("Book")] public int BooksBookId { get; set; }
 
         public virtual Book BooksBook { get; set; }
         public virtual User UsersUser { get; set; }

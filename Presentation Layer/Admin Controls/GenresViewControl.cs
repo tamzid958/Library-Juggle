@@ -9,6 +9,7 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
     public partial class GenresViewControl : UserControl
     {
         private readonly GenreDataAccess _genre;
+
         public GenresViewControl()
         {
             InitializeComponent();
@@ -22,6 +23,7 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
             GenreGridView.DataSource = _genre.GetAllGenres();
             GenreGridView.Columns[0].Visible = GenreGridView.Columns[2].Visible = false;
         }
+
         private void AddGenreButton_Click(object sender, EventArgs e)
         {
             if (GenreName.Text == null) return;
@@ -29,12 +31,14 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
             _genre.CreateGenre(newGenre);
             try
             {
-                MetroMessageBox.Show(this, @"New Genre Added!", @"Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MetroMessageBox.Show(this, @"New Genre Added!", @"Information", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
             }
+
             InitState();
         }
     }

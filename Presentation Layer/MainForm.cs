@@ -11,18 +11,20 @@ namespace Library_Juggle.Presentation_Layer
     public partial class MainForm : MetroForm
     {
         private readonly UserDataAccess _user;
+
         public MainForm()
         {
             InitializeComponent();
             _user = new UserDataAccess();
             InitState();
         }
+
         private void InitState()
         {
             var currentUser = _user.CurrentUser();
             if (currentUser == null)
             {
-                LoginControl login = new() { Dock = DockStyle.Fill };
+                LoginControl login = new() {Dock = DockStyle.Fill};
                 Controls.Add(login);
             }
             else
@@ -30,7 +32,7 @@ namespace Library_Juggle.Presentation_Layer
                 switch (currentUser.Role.RoleName)
                 {
                     case "Admin":
-                        AdminDashboardControl adminDashboard = new() { Dock = DockStyle.Fill };
+                        AdminDashboardControl adminDashboard = new() {Dock = DockStyle.Fill};
                         Controls.Add(adminDashboard);
                         break;
                     case "Librarian":
@@ -38,12 +40,11 @@ namespace Library_Juggle.Presentation_Layer
                         Controls.Add(librarianDashboard);
                         break;
                     case "Student":
-                        StudentDashboardControl studentDashboard = new() { Dock = DockStyle.Fill };
+                        StudentDashboardControl studentDashboard = new() {Dock = DockStyle.Fill};
                         Controls.Add(studentDashboard);
                         break;
                 }
             }
         }
-       
     }
 }
