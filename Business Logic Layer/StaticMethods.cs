@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
+using System.Windows.Forms;
 
 namespace Library_Juggle.Business_Logic_Layer
 {
@@ -34,6 +36,11 @@ namespace Library_Juggle.Business_Logic_Layer
         public static void LogOutUser()
         {
             if (File.Exists(@"cookie.key")) File.Delete(@"cookie.key");
+        }
+
+        public static string GridViewDataAccess(DataGridView obj, string findRow)
+        {
+            return obj.Rows[obj.CurrentRow!.Index].Cells[findRow].Value.ToString();
         }
     }
 }

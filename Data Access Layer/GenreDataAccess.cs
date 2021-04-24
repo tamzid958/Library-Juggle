@@ -18,9 +18,19 @@ namespace Library_Juggle.Data_Access_Layer
             return _db.Genres.ToList();
         }
 
+        public Genre GetGenre(int genreId)
+        {
+            return _db.Genres.FirstOrDefault(g=> g.GenreId == genreId);
+        }
         public void CreateGenre(Genre genre)
         {
             _db.Genres.AddAsync(genre);
+            _db.SaveChangesAsync();
+        }
+
+        public void UpdateGenre(Genre genre)
+        {
+            _db.Update(genre);
             _db.SaveChangesAsync();
         }
     }

@@ -17,5 +17,10 @@ namespace Library_Juggle.Data_Access_Layer
         {
             return _db.Books.ToList();
         }
+
+        public List<Book> GetAllBooksByName(string bookTitle)
+        {
+            return string.IsNullOrWhiteSpace(bookTitle) ? GetAllBooks() : _db.Books.Where(b => b.BookTitle.ToLower().Contains(bookTitle.ToLower())).ToList();
+        }
     }
 }

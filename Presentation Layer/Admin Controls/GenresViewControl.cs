@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Library_Juggle.Business_Logic_Layer;
 using Library_Juggle.Data_Access_Layer;
 using Library_Juggle.Data_Access_Layer.Entities;
 using MetroFramework;
@@ -19,7 +20,6 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
 
         private void InitState()
         {
-            GenreGridView.DataSource = null;
             GenreGridView.DataSource = _genre.GetAllGenres();
             GenreGridView.Columns[0].Visible = GenreGridView.Columns[2].Visible = false;
         }
@@ -40,6 +40,17 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
             }
 
             InitState();
+        }
+
+        private void GenreGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        { 
+             if (GenreGridView.CurrentRow == null) return;
+             var genreId = int.Parse(StaticMethods.GridViewDataAccess(GenreGridView, "GenreId"));
+             var genreName = StaticMethods.GridViewDataAccess(GenreGridView, "GenreName");
+             if (string.IsNullOrWhiteSpace(genreName)) return;
+             var currentGenre = _genre.GetGenre(genreId);
+             currentGenre.GenreName = genreName;
+             _genre.UpdateGenre(currentGenre);
         }
     }
 }
