@@ -13,7 +13,7 @@ namespace Library_Juggle.Migrations
                 {
                     RoleId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
+                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -28,8 +28,8 @@ namespace Library_Juggle.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Token = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Token = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     RoleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -50,7 +50,6 @@ namespace Library_Juggle.Migrations
                     GenreId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     GenreName = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
-                    GenreUserId = table.Column<int>(type: "int", nullable: false),
                     UsersUserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -75,7 +74,6 @@ namespace Library_Juggle.Migrations
                     BookPublisher = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BookPublishedDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     GenreId = table.Column<int>(type: "int", nullable: false),
-                    BookUserId = table.Column<int>(type: "int", nullable: false),
                     UsersUserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -102,8 +100,6 @@ namespace Library_Juggle.Migrations
                     LoanId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DateIssued = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    LoanBookId = table.Column<int>(type: "int", nullable: false),
-                    LoanUserId = table.Column<int>(type: "int", nullable: false),
                     UsersUserId = table.Column<int>(type: "int", nullable: true),
                     BooksBookId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -142,7 +138,7 @@ namespace Library_Juggle.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "Email", "Name", "Password", "RoleId", "Token" },
-                values: new object[] { 1, "admin@libraryjuggle.com", "Library Admin", "CD6FA8ABA065897E5A56061882350B66", 1, "2919defb-3e39-496d-929e-200e2dff9a66" });
+                values: new object[] { 1, "admin@libraryjuggle.com", "Library Admin", "CD6FA8ABA065897E5A56061882350B66", 1, new Guid("ca82e45c-1306-409c-b4fe-8c2e62eb3a18") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_GenreId",

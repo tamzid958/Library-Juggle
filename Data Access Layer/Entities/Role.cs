@@ -1,20 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
+#nullable disable
+
 namespace Library_Juggle.Data_Access_Layer.Entities
 {
-    public class Role
+    public sealed class Role
     {
         public Role()
         {
             Users = new HashSet<User>();
         }
-        [Key]
-        public int RoleId { set; get; }
 
+        [Key]
+        public int RoleId { get; set; }
+        
         [Required]
-        [StringLength(30)]
-        public string RoleName { set; get; }
+        public string RoleName { get; set; }
 
         public ICollection<User> Users { get; set; }
     }

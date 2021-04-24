@@ -1,31 +1,26 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+
+#nullable disable
 
 namespace Library_Juggle.Data_Access_Layer.Entities
 {
-    public class Book
+    public sealed class Book
     {
-        [Key]
-        public int BookId { set; get; }
+        public Book()
+        {
+            Loans = new HashSet<Loan>();
+        }
 
-        [Required]
-        public string BookTitle { set; get; }
+        public int BookId { get; set; }
+        public string BookTitle { get; set; }
+        public string BookAuthor { get; set; }
+        public string BookPublisher { get; set; }
+        public string BookPublishedDate { get; set; }
+        public int GenreId { get; set; }
+        public int? UsersUserId { get; set; }
 
-        [Required]
-        public string BookAuthor { set; get; }
-
-        [Required]
-        public string BookPublisher { set; get; }
-
-        [Required]
-        public string BookPublishedDate { set; get; }
-
-        [Required]
-        public int GenreId { set; get; }
-
-        [Required]
-        public int BookUserId { set; get; }
-
-        public virtual User Users { set; get; }
-        public virtual Genre Genre { set; get; }
+        public Genre Genre { get; set; }
+        public User UsersUser { get; set; }
+        public ICollection<Loan> Loans { get; set; }
     }
 }

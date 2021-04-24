@@ -1,9 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+#nullable disable
 
 namespace Library_Juggle.Data_Access_Layer.Entities
 {
-    public class User
+    public sealed class User
     {
         public User()
         {
@@ -13,29 +17,25 @@ namespace Library_Juggle.Data_Access_Layer.Entities
         }
 
         [Key]
-        public int UserId { set; get; }
+        public int UserId { get; set; }
+        
+        [Required]
+        public string Name { get; set; }
+        
+        [Required]
+        public string Email { get; set; }
 
         [Required]
-        public string Name { set; get; }
+        public string Password { get; set; }
 
+        public Guid Token { get; set; }
+        
         [Required]
-        [EmailAddress(ErrorMessage = "Invalid Email Address")]
-        public string Email { set; get; }
+        public int RoleId { get; set; }
 
-        [Required]
-        [StringLength(255, ErrorMessage = "Must be between 5 and 255 characters", MinimumLength = 5)]
-        [DataType(DataType.Password)]
-        public string Password { set; get; }
-
-        [Required]
-        public string Token { set; get; }
-
-        [Required]
-        public int RoleId { set; get; }
-
-        public virtual Role Role { set; get; }
-        public ICollection<Book> Books { set; get; }
-        public ICollection<Genre> Genres { set; get; }
-        public ICollection<Loan> Loans { set; get; }
+        public Role Role { get; set; }
+        public ICollection<Book> Books { get; set; }
+        public ICollection<Genre> Genres { get; set; }
+        public ICollection<Loan> Loans { get; set; }
     }
 }

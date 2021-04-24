@@ -6,11 +6,11 @@ namespace Library_Juggle.Data_Access_Layer
 {
     public class BookDataAccess
     {
-        private readonly LibraryJuggleContext _db;
+        private readonly LibraryJuggleDbContext _db;
 
         public BookDataAccess()
         {
-            _db = new LibraryJuggleContext();
+            _db = new LibraryJuggleDbContext();
         }
 
         public List<Book> GetAllBooks()

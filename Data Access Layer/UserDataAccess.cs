@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
@@ -10,16 +11,16 @@ namespace Library_Juggle.Data_Access_Layer
 {
      public class UserDataAccess
     {
-        private readonly LibraryJuggleContext _db;
+        private readonly LibraryJuggleDbContext _db;
 
         public UserDataAccess()
         {
-            _db = new LibraryJuggleContext();
+            _db = new LibraryJuggleDbContext();
         }
 
         public void CreateUser(User user)
         {
-            user.Token = StaticMethods.CreateToken();
+            user.Token = Guid.NewGuid();
             _db.Users.AddAsync(user);
             _db.SaveChangesAsync();
         }
@@ -35,14 +36,14 @@ namespace Library_Juggle.Data_Access_Layer
             password = StaticMethods.CreateMd5(password);
             var currentUser = _db.Users.Include(r => r.Role).FirstOrDefault(u => u.Email == email && u.Password == password);
             if (currentUser == null) return null;
-            File.WriteAllText(@"cookie.key", currentUser.Token);
+            File.WriteAllText(@"cookie.key", currentUser.Token.ToString());
             return currentUser;
         }
 
         public User CurrentUser()
         {
             if (!File.Exists(@"cookie.key")) return null;
-            var token = File.ReadAllText(@"cookie.key");
+            var token = Guid.Parse(File.ReadAllText(@"cookie.key"));
             return _db.Users.Include(r => r.Role).FirstOrDefault(u => u.Token == token);
         }
 

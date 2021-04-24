@@ -9,14 +9,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Library_Juggle.Migrations
 {
-    [DbContext(typeof(LibraryJuggleContext))]
-    [Migration("20210423204335_Initial")]
+    [DbContext(typeof(LibraryJuggleDbContext))]
+    [Migration("20210424093140_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -44,9 +45,6 @@ namespace Library_Juggle.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("BookUserId")
-                        .HasColumnType("int");
-
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
 
@@ -55,9 +53,9 @@ namespace Library_Juggle.Migrations
 
                     b.HasKey("BookId");
 
-                    b.HasIndex("GenreId");
+                    b.HasIndex(new[] { "GenreId" }, "IX_Books_GenreId");
 
-                    b.HasIndex("UsersUserId");
+                    b.HasIndex(new[] { "UsersUserId" }, "IX_Books_UsersUserId");
 
                     b.ToTable("Books");
                 });
@@ -74,15 +72,12 @@ namespace Library_Juggle.Migrations
                         .HasMaxLength(70)
                         .HasColumnType("nvarchar(70)");
 
-                    b.Property<int>("GenreUserId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("UsersUserId")
                         .HasColumnType("int");
 
                     b.HasKey("GenreId");
 
-                    b.HasIndex("UsersUserId");
+                    b.HasIndex(new[] { "UsersUserId" }, "IX_Genres_UsersUserId");
 
                     b.ToTable("Genres");
                 });
@@ -100,20 +95,14 @@ namespace Library_Juggle.Migrations
                     b.Property<DateTime>("DateIssued")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("LoanBookId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LoanUserId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("UsersUserId")
                         .HasColumnType("int");
 
                     b.HasKey("LoanId");
 
-                    b.HasIndex("BooksBookId");
+                    b.HasIndex(new[] { "BooksBookId" }, "IX_Loans_BooksBookId");
 
-                    b.HasIndex("UsersUserId");
+                    b.HasIndex(new[] { "UsersUserId" }, "IX_Loans_UsersUserId");
 
                     b.ToTable("Loans");
                 });
@@ -127,8 +116,7 @@ namespace Library_Juggle.Migrations
 
                     b.Property<string>("RoleName")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("RoleId");
 
@@ -169,15 +157,14 @@ namespace Library_Juggle.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Token")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("Token")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("UserId");
 
@@ -196,7 +183,7 @@ namespace Library_Juggle.Migrations
                             Name = "Library Admin",
                             Password = "CD6FA8ABA065897E5A56061882350B66",
                             RoleId = 1,
-                            Token = "2919defb-3e39-496d-929e-200e2dff9a66"
+                            Token = new Guid("ca82e45c-1306-409c-b4fe-8c2e62eb3a18")
                         });
                 });
 
@@ -208,37 +195,37 @@ namespace Library_Juggle.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Library_Juggle.Data_Access_Layer.Entities.User", "Users")
+                    b.HasOne("Library_Juggle.Data_Access_Layer.Entities.User", "UsersUser")
                         .WithMany("Books")
                         .HasForeignKey("UsersUserId");
 
                     b.Navigation("Genre");
 
-                    b.Navigation("Users");
+                    b.Navigation("UsersUser");
                 });
 
             modelBuilder.Entity("Library_Juggle.Data_Access_Layer.Entities.Genre", b =>
                 {
-                    b.HasOne("Library_Juggle.Data_Access_Layer.Entities.User", "Users")
+                    b.HasOne("Library_Juggle.Data_Access_Layer.Entities.User", "UsersUser")
                         .WithMany("Genres")
                         .HasForeignKey("UsersUserId");
 
-                    b.Navigation("Users");
+                    b.Navigation("UsersUser");
                 });
 
             modelBuilder.Entity("Library_Juggle.Data_Access_Layer.Entities.Loan", b =>
                 {
-                    b.HasOne("Library_Juggle.Data_Access_Layer.Entities.Book", "Books")
-                        .WithMany()
+                    b.HasOne("Library_Juggle.Data_Access_Layer.Entities.Book", "BooksBook")
+                        .WithMany("Loans")
                         .HasForeignKey("BooksBookId");
 
-                    b.HasOne("Library_Juggle.Data_Access_Layer.Entities.User", "Users")
+                    b.HasOne("Library_Juggle.Data_Access_Layer.Entities.User", "UsersUser")
                         .WithMany("Loans")
                         .HasForeignKey("UsersUserId");
 
-                    b.Navigation("Books");
+                    b.Navigation("BooksBook");
 
-                    b.Navigation("Users");
+                    b.Navigation("UsersUser");
                 });
 
             modelBuilder.Entity("Library_Juggle.Data_Access_Layer.Entities.User", b =>
@@ -250,6 +237,11 @@ namespace Library_Juggle.Migrations
                         .IsRequired();
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("Library_Juggle.Data_Access_Layer.Entities.Book", b =>
+                {
+                    b.Navigation("Loans");
                 });
 
             modelBuilder.Entity("Library_Juggle.Data_Access_Layer.Entities.Genre", b =>

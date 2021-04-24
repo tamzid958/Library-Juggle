@@ -10,11 +10,11 @@ namespace Library_Juggle.Data_Access_Layer
     public class GenreDataAccess
     {
 
-        private readonly LibraryJuggleContext _db;
+        private readonly LibraryJuggleDbContext _db;
 
         public GenreDataAccess()
         {
-            _db = new LibraryJuggleContext();
+            _db = new LibraryJuggleDbContext();
         }
 
         public List<Genre> GetAllGenres()
