@@ -8,6 +8,19 @@ namespace Library_Juggle.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Genres",
+                columns: table => new
+                {
+                    GenreId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    GenreName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Genres", x => x.GenreId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Roles",
                 columns: table => new
                 {
@@ -18,6 +31,29 @@ namespace Library_Juggle.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Roles", x => x.RoleId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Books",
+                columns: table => new
+                {
+                    BookId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BookTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BookAuthor = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BookPublisher = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BookPublishedDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GenreId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Books", x => x.BookId);
+                    table.ForeignKey(
+                        name: "FK_Books_Genres_GenreId",
+                        column: x => x.GenreId,
+                        principalTable: "Genres",
+                        principalColumn: "GenreId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -44,64 +80,14 @@ namespace Library_Juggle.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Genres",
-                columns: table => new
-                {
-                    GenreId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    GenreName = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
-                    UsersUserId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Genres", x => x.GenreId);
-                    table.ForeignKey(
-                        name: "FK_Genres_Users_UsersUserId",
-                        column: x => x.UsersUserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Books",
-                columns: table => new
-                {
-                    BookId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    BookTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BookAuthor = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BookPublisher = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BookPublishedDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    GenreId = table.Column<int>(type: "int", nullable: false),
-                    UsersUserId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Books", x => x.BookId);
-                    table.ForeignKey(
-                        name: "FK_Books_Genres_GenreId",
-                        column: x => x.GenreId,
-                        principalTable: "Genres",
-                        principalColumn: "GenreId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Books_Users_UsersUserId",
-                        column: x => x.UsersUserId,
-                        principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Loans",
                 columns: table => new
                 {
                     LoanId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DateIssued = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UsersUserId = table.Column<int>(type: "int", nullable: true),
-                    BooksBookId = table.Column<int>(type: "int", nullable: true)
+                    UsersUserId = table.Column<int>(type: "int", nullable: false),
+                    BooksBookId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -111,13 +97,13 @@ namespace Library_Juggle.Migrations
                         column: x => x.BooksBookId,
                         principalTable: "Books",
                         principalColumn: "BookId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Loans_Users_UsersUserId",
                         column: x => x.UsersUserId,
                         principalTable: "Users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -138,22 +124,12 @@ namespace Library_Juggle.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "Email", "Name", "Password", "RoleId", "Token" },
-                values: new object[] { 1, "admin@libraryjuggle.com", "Library Admin", "CD6FA8ABA065897E5A56061882350B66", 1, new Guid("ca82e45c-1306-409c-b4fe-8c2e62eb3a18") });
+                values: new object[] { 1, "admin@libraryjuggle.com", "Library Admin", "CD6FA8ABA065897E5A56061882350B66", 1, new Guid("d8be1deb-b36d-46da-8c46-9660a6a8cbda") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_GenreId",
                 table: "Books",
                 column: "GenreId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Books_UsersUserId",
-                table: "Books",
-                column: "UsersUserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Genres_UsersUserId",
-                table: "Genres",
-                column: "UsersUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Loans_BooksBookId",
@@ -186,10 +162,10 @@ namespace Library_Juggle.Migrations
                 name: "Books");
 
             migrationBuilder.DropTable(
-                name: "Genres");
+                name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Genres");
 
             migrationBuilder.DropTable(
                 name: "Roles");

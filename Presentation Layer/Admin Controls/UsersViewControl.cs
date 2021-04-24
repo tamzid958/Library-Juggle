@@ -41,8 +41,7 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
             };
             UserDataGridView.DataSource = _users;
             UserDataGridView.Columns[0].Visible = UserDataGridView.Columns[3].Visible = UserDataGridView.Columns[4].Visible 
-                = UserDataGridView.Columns[5].Visible = UserDataGridView.Columns[6].Visible = UserDataGridView.Columns[7].Visible 
-                    = UserDataGridView.Columns[8].Visible = UserDataGridView.Columns[9].Visible = false;
+                = UserDataGridView.Columns[5].Visible = UserDataGridView.Columns[6].Visible = UserDataGridView.Columns[7].Visible = false;
             UserDataGridView.Columns.Add(roleComboBoxColumn);
             
             UserComboBox.Items.Add("Select User From List");

@@ -35,57 +35,7 @@ namespace Library_Juggle.Data_Access_Layer
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           modelBuilder.Entity<Book>(entity =>
-            {
-                entity.HasIndex(e => e.GenreId, "IX_Books_GenreId");
-
-                entity.HasIndex(e => e.UsersUserId, "IX_Books_UsersUserId");
-
-                entity.Property(e => e.BookAuthor).IsRequired();
-
-                entity.Property(e => e.BookPublishedDate).IsRequired();
-
-                entity.Property(e => e.BookPublisher).IsRequired();
-
-                entity.Property(e => e.BookTitle).IsRequired();
-
-                entity.HasOne(d => d.Genre)
-                    .WithMany(p => p.Books)
-                    .HasForeignKey(d => d.GenreId);
-
-                entity.HasOne(d => d.UsersUser)
-                    .WithMany(p => p.Books)
-                    .HasForeignKey(d => d.UsersUserId);
-            });
-
-            modelBuilder.Entity<Genre>(entity =>
-            {
-                entity.HasIndex(e => e.UsersUserId, "IX_Genres_UsersUserId");
-
-                entity.Property(e => e.GenreName)
-                    .IsRequired()
-                    .HasMaxLength(70);
-
-                entity.HasOne(d => d.UsersUser)
-                    .WithMany(p => p.Genres)
-                    .HasForeignKey(d => d.UsersUserId);
-            });
-
-            modelBuilder.Entity<Loan>(entity =>
-            {
-                entity.HasIndex(e => e.BooksBookId, "IX_Loans_BooksBookId");
-
-                entity.HasIndex(e => e.UsersUserId, "IX_Loans_UsersUserId");
-
-                entity.HasOne(d => d.BooksBook)
-                    .WithMany(p => p.Loans)
-                    .HasForeignKey(d => d.BooksBookId);
-
-                entity.HasOne(d => d.UsersUser)
-                    .WithMany(p => p.Loans)
-                    .HasForeignKey(d => d.UsersUserId);
-            });
-
+           
             modelBuilder.Entity<Role>(entity =>
             {
                 entity.HasData(

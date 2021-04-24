@@ -10,9 +10,7 @@ namespace Library_Juggle.Data_Access_Layer.Entities
     public sealed class User
     {
         public User()
-        {
-            Books = new HashSet<Book>();
-            Genres = new HashSet<Genre>();
+        { 
             Loans = new HashSet<Loan>();
         }
 
@@ -31,11 +29,10 @@ namespace Library_Juggle.Data_Access_Layer.Entities
         public Guid Token { get; set; }
         
         [Required]
+        [ForeignKey("Role")]
         public int RoleId { get; set; }
 
         public Role Role { get; set; }
-        public ICollection<Book> Books { get; set; }
-        public ICollection<Genre> Genres { get; set; }
         public ICollection<Loan> Loans { get; set; }
     }
 }
