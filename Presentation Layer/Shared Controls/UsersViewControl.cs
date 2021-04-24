@@ -63,8 +63,7 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
             foreach (var user in _users) UserComboBox.Items.Add(new KeyValuePair<int, string>(user.UserId, user.Email));
 
             foreach (var role in _roles) RoleComboBox.Items.Add(new KeyValuePair<int, string>(role.RoleId, role.RoleName));
-            if (_user.CurrentUser().Role.RoleName is not "Admin") 
-                UserComboBox.Visible = RoleComboBox.Visible = ChangeRoleButton.Visible = false;
+            if (_user.CurrentUser().Role.RoleName is not "Admin") UserComboBox.Visible = RoleComboBox.Visible = ChangeRoleButton.Visible = false;
         }
 
         private void ChangeRoleButton_Click(object sender, EventArgs e)
@@ -97,7 +96,9 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
             if (e.ColumnIndex != 9 || UserDataGridView.CurrentRow == null) return;
             var userId = int.Parse(StaticMethods.GridViewDataAccess(UserDataGridView, "UserId"));
             var selectedUser = _user.GetUser(userId);
-            if (_user.CurrentUser().UserId == userId || selectedUser.Role.RoleName == "Admin") return; 
+            var currentUser = _user.CurrentUser();
+            if (currentUser.UserId == userId || selectedUser.Role.RoleName is "Admin") return;
+            if(currentUser.Role.RoleName is "Librarian" && selectedUser.Role.RoleName is "Librarian") return;
             try
             {
                 _user.DeleteUser(userId);

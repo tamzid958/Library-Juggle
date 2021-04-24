@@ -64,11 +64,11 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.UserDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
-            this.UserDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.UserDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.UserDataGridView.EnableHeadersVisualStyles = false;
             this.UserDataGridView.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.UserDataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.UserDataGridView.Location = new System.Drawing.Point(0, 181);
+            this.UserDataGridView.Location = new System.Drawing.Point(0, 81);
             this.UserDataGridView.Name = "UserDataGridView";
             this.UserDataGridView.ReadOnly = true;
             this.UserDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -83,9 +83,9 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
             this.UserDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.UserDataGridView.RowTemplate.Height = 25;
             this.UserDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.UserDataGridView.Size = new System.Drawing.Size(567, 240);
+            this.UserDataGridView.Size = new System.Drawing.Size(567, 340);
             this.UserDataGridView.Style = MetroFramework.MetroColorStyle.Lime;
-            this.UserDataGridView.TabIndex = 2;
+            this.UserDataGridView.TabIndex = 9;
             this.UserDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.UserDataGridView_CellContentClick);
             // 
             // UserComboBox
@@ -101,8 +101,8 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
             // 
             // ChangeRoleButton
             // 
-            this.ChangeRoleButton.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ChangeRoleButton.Location = new System.Drawing.Point(0, 158);
+            this.ChangeRoleButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ChangeRoleButton.Location = new System.Drawing.Point(0, 58);
             this.ChangeRoleButton.Name = "ChangeRoleButton";
             this.ChangeRoleButton.Size = new System.Drawing.Size(567, 23);
             this.ChangeRoleButton.TabIndex = 5;
@@ -125,10 +125,10 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.RoleComboBox);
-            this.Controls.Add(this.ChangeRoleButton);
-            this.Controls.Add(this.UserComboBox);
             this.Controls.Add(this.UserDataGridView);
+            this.Controls.Add(this.ChangeRoleButton);
+            this.Controls.Add(this.RoleComboBox);
+            this.Controls.Add(this.UserComboBox);
             this.Name = "UsersViewControl";
             this.Size = new System.Drawing.Size(567, 421);
             ((System.ComponentModel.ISupportInitialize)(this.UserDataGridView)).EndInit();

@@ -5,7 +5,7 @@ using Library_Juggle.Presentation_Layer.Admin_Controls;
 using Library_Juggle.Presentation_Layer.Librarian_Controls;
 using Library_Juggle.Presentation_Layer.Student_Controls;
 
-namespace Library_Juggle.Presentation_Layer.Auth_Controls
+namespace Library_Juggle.Presentation_Layer.Authentication_Controls
 {
     public partial class LoginControl : UserControl
     {

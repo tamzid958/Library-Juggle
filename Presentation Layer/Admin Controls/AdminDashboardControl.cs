@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using Library_Juggle.Business_Logic_Layer;
 using Library_Juggle.Data_Access_Layer;
-using Library_Juggle.Presentation_Layer.Auth_Controls;
+using Library_Juggle.Presentation_Layer.Authentication_Controls;
 using Library_Juggle.Presentation_Layer.Shared_Controls;
 
 namespace Library_Juggle.Presentation_Layer.Admin_Controls
@@ -24,9 +24,7 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
             if (currentUser == null || currentUser.Role.RoleName != "Admin")
             {
                 StaticMethods.LogOutUser();
-                Hide();
-                LoginControl login = new() {Dock = DockStyle.Fill};
-                Parent.Controls.Add(login);
+                Application.Exit();
             }
             else
             {

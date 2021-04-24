@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using Library_Juggle.Business_Logic_Layer;
 using Library_Juggle.Data_Access_Layer;
-using Library_Juggle.Presentation_Layer.Auth_Controls;
+using Library_Juggle.Presentation_Layer.Authentication_Controls;
 
 namespace Library_Juggle.Presentation_Layer.Student_Controls
 {

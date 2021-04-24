@@ -5,7 +5,7 @@ using Library_Juggle.Data_Access_Layer;
 using Library_Juggle.Data_Access_Layer.Entities;
 using MetroFramework;
 
-namespace Library_Juggle.Presentation_Layer.Auth_Controls
+namespace Library_Juggle.Presentation_Layer.Authentication_Controls
 {
     public partial class RegisterControl : UserControl
     {

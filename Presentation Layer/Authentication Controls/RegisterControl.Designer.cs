@@ -1,5 +1,5 @@
 ﻿
-namespace Library_Juggle.Presentation_Layer.Auth_Controls
+namespace Library_Juggle.Presentation_Layer.Authentication_Controls
 {
     partial class RegisterControl
     {

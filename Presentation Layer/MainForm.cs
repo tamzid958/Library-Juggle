@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using Library_Juggle.Data_Access_Layer;
 using Library_Juggle.Presentation_Layer.Admin_Controls;
-using Library_Juggle.Presentation_Layer.Auth_Controls;
+using Library_Juggle.Presentation_Layer.Authentication_Controls;
 using Library_Juggle.Presentation_Layer.Librarian_Controls;
 using Library_Juggle.Presentation_Layer.Student_Controls;
 using MetroFramework.Forms;

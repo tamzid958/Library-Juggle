@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Library_Juggle.Data_Access_Layer;
 using Library_Juggle.Data_Access_Layer.Entities;
@@ -24,31 +25,34 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
 
         private void InitState()
         {
-            var bookComboBoxColumn = new DataGridViewComboBoxColumn
+            ArrayList comboBoxList = new()
             {
-                HeaderText = @"Book",
-                Name = @"UserDataGridBook",
-                DataPropertyName = @"BookId",
-                DataSource = _books,
-                DisplayMember = @"BookTitle",
-                ValueMember = @"BookId",
-                DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing
+              new DataGridViewComboBoxColumn{
+                    HeaderText = @"Book",
+                    Name = @"UserDataGridBook",
+                    DataPropertyName = @"BookId",
+                    DataSource = _books,
+                    DisplayMember = @"BookTitle",
+                    ValueMember = @"BookId",
+                    DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing
+                },
+              new DataGridViewComboBoxColumn
+              {
+                  HeaderText = @"User",
+                  Name = @"UserDataGridUser",
+                  DataPropertyName = @"UserId",
+                  DataSource = _users,
+                  DisplayMember = @"Name",
+                  ValueMember = @"UserId",
+                  DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing
+              }
             };
-            var userComboBoxColumn = new DataGridViewComboBoxColumn
-            {
-                HeaderText = @"User",
-                Name = @"UserDataGridUser",
-                DataPropertyName = @"UserId",
-                DataSource = _users,
-                DisplayMember = @"Name",
-                ValueMember = @"UserId",
-                DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing
-            };
-            LoanGridView.Columns.AddRange(bookComboBoxColumn, userComboBoxColumn);
+            
+            LoanGridView.Columns.AddRange((DataGridViewColumn[]) comboBoxList.ToArray(typeof(DataGridViewColumn)));
             LoanGridView.DataSource = _loans;
             LoanGridView.Columns[2].Visible = LoanGridView.Columns[4].Visible = LoanGridView.Columns[5].Visible =
                 LoanGridView.Columns[6].Visible = LoanGridView.Columns[7].Visible = false;
-            LoanGridView.Columns[3].HeaderText = @"Issue Date";
+           LoanGridView.Columns[3].HeaderText = @"Issue Date";
         }
     }
 }
