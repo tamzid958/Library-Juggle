@@ -6,10 +6,11 @@ using Library_Juggle.Data_Access_Layer;
 using Library_Juggle.Data_Access_Layer.Entities;
 using MetroFramework;
 
-namespace Library_Juggle.Presentation_Layer.Admin_Controls
+namespace Library_Juggle.Presentation_Layer.Shared_Controls
 {
     public partial class BooksViewControl : UserControl
     {
+        private readonly UserDataAccess _user;
         private readonly BookDataAccess _book;
         private readonly List<Genre> _genres;
 
@@ -17,6 +18,7 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
         {
             InitializeComponent();
             _book = new BookDataAccess();
+            _user = new UserDataAccess();
             var genre = new GenreDataAccess();
             _genres = genre.GetAllGenres();
             InitState();
@@ -51,7 +53,17 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
             BookGridView.Columns[2].HeaderText = @"Author";
             BookGridView.Columns[3].HeaderText = @"Publisher";
             BookGridView.Columns[4].HeaderText = @"Publish Date";
-            BookGridView.Columns.AddRange(genreComboBoxColumn, deleteButtonsColumn);
+            var checkUserPermission = _user.CurrentUser().Role.RoleName;
+            if (checkUserPermission is "Admin" or "Librarian")
+            {
+                BookGridView.Columns.AddRange(genreComboBoxColumn, deleteButtonsColumn);
+            }
+            else
+            {
+                BookGridView.Columns.Add(genreComboBoxColumn);
+                BookGridView.ReadOnly = true;
+            }
+
         }
 
         private void SearchBookTerm_KeyUp(object sender, KeyEventArgs e)
@@ -70,8 +82,21 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
             var bookPublishDate = StaticMethods.GridViewDataAccess(BookGridView, "BookPublishedDate");
             var genreId = int.Parse(StaticMethods.GridViewDataAccess(BookGridView, "UserDataGridGenre"));
             var currentBook = _book.GetBook(bookId);
-            if (currentBook == null) return;
+            if (currentBook == null 
+                || string.IsNullOrWhiteSpace(bookTitle)
+                || string.IsNullOrWhiteSpace(bookAuthor)
+                || string.IsNullOrWhiteSpace(bookPublisher)
+                || string.IsNullOrWhiteSpace(bookPublishDate)) return;
            _book.UpdateBook(bookId, bookTitle, bookAuthor, bookPublisher, bookPublishDate, genreId);
+           try
+           {
+               MetroMessageBox.Show(this, $"{bookTitle} Updated!", @"Information", MessageBoxButtons.OK,
+                   MessageBoxIcon.Information);
+           }
+           catch (Exception exception)
+           {
+               Console.WriteLine(exception);
+           }
         }
 
         private void BookGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)

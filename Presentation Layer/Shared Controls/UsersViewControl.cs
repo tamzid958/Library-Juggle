@@ -6,7 +6,7 @@ using Library_Juggle.Data_Access_Layer;
 using Library_Juggle.Data_Access_Layer.Entities;
 using MetroFramework;
 
-namespace Library_Juggle.Presentation_Layer.Admin_Controls
+namespace Library_Juggle.Presentation_Layer.Shared_Controls
 {
     public partial class UsersViewControl : UserControl
     {
@@ -62,8 +62,9 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
             RoleComboBox.SelectedIndex = 0;
             foreach (var user in _users) UserComboBox.Items.Add(new KeyValuePair<int, string>(user.UserId, user.Email));
 
-            foreach (var role in _roles)
-                RoleComboBox.Items.Add(new KeyValuePair<int, string>(role.RoleId, role.RoleName));
+            foreach (var role in _roles) RoleComboBox.Items.Add(new KeyValuePair<int, string>(role.RoleId, role.RoleName));
+            if (_user.CurrentUser().Role.RoleName is not "Admin") 
+                UserComboBox.Visible = RoleComboBox.Visible = ChangeRoleButton.Visible = false;
         }
 
         private void ChangeRoleButton_Click(object sender, EventArgs e)

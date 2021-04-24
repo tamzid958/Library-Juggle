@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using Library_Juggle.Data_Access_Layer;
 using Library_Juggle.Data_Access_Layer.Entities;
 
-namespace Library_Juggle.Presentation_Layer.Admin_Controls
+namespace Library_Juggle.Presentation_Layer.Shared_Controls
 {
     public partial class LoansViewControl : UserControl
     {

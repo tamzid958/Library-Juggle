@@ -1,5 +1,5 @@
 ﻿
-namespace Library_Juggle.Presentation_Layer.Admin_Controls
+namespace Library_Juggle.Presentation_Layer.Shared_Controls
 {
     partial class UsersViewControl
     {
