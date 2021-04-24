@@ -62,5 +62,11 @@ namespace Library_Juggle.Data_Access_Layer
             _db.Users.Update(currentUser);
             _db.SaveChangesAsync();
         }
+
+        public void DeleteUser(int userId)
+        {
+            _db.Users.Remove(GetUser(userId));
+            _db.SaveChangesAsync();
+        }
     }
 }

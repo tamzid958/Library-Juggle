@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using Library_Juggle.Business_Logic_Layer;
 using Library_Juggle.Data_Access_Layer;
@@ -22,11 +23,27 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
         {
             GenreGridView.DataSource = _genre.GetAllGenres();
             GenreGridView.Columns[0].Visible = GenreGridView.Columns[2].Visible = false;
+            var deleteButtonsColumn = new DataGridViewButtonColumn
+            {
+                HeaderText = @"Delete",
+                Name = @"UserDataGridGenreDelete",
+                DataPropertyName = @"GenreId",
+                UseColumnTextForButtonValue = true,
+                Text = @"Delete",
+                FlatStyle = FlatStyle.Flat,
+            };
+
+            GenreGridView.Columns.Add(deleteButtonsColumn);
         }
 
+        private void ChangeState()
+        {
+            GenreGridView.DataSource = _genre.GetAllGenres();
+            GenreGridView.Columns[0].Visible = GenreGridView.Columns[2].Visible = false;
+        }
         private void AddGenreButton_Click(object sender, EventArgs e)
         {
-            if (GenreName.Text == null) return;
+            if (string.IsNullOrWhiteSpace(GenreName.Text)) return;
             var newGenre = new Genre {GenreName = GenreName.Text};
             _genre.CreateGenre(newGenre);
             try
@@ -38,8 +55,7 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
             {
                 Console.WriteLine(exception);
             }
-
-            InitState();
+            ChangeState();
         }
 
         private void GenreGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -47,10 +63,38 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
              if (GenreGridView.CurrentRow == null) return;
              var genreId = int.Parse(StaticMethods.GridViewDataAccess(GenreGridView, "GenreId"));
              var genreName = StaticMethods.GridViewDataAccess(GenreGridView, "GenreName");
-             if (string.IsNullOrWhiteSpace(genreName)) return;
              var currentGenre = _genre.GetGenre(genreId);
-             currentGenre.GenreName = genreName;
-             _genre.UpdateGenre(currentGenre);
+             if (currentGenre == null) return;
+             if (string.IsNullOrWhiteSpace(genreName)) return;
+             _genre.UpdateGenre(genreId, genreName);
+             try
+             {
+                 MetroMessageBox.Show(this, $"{genreName} Updated!", @"Information", MessageBoxButtons.OK,
+                     MessageBoxIcon.Information);
+             }
+             catch (Exception exception)
+             {
+                 Console.WriteLine(exception);
+             }
+
+             ChangeState();
+        }
+
+        private void GenreGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex != 3 || GenreGridView.CurrentRow == null) return;
+            var genreId = int.Parse(StaticMethods.GridViewDataAccess(GenreGridView, "GenreId"));
+            try
+            {
+                _genre.DeleteGenre(genreId);
+                MetroMessageBox.Show(this, @"Genre Deleted!", @"Warning", MessageBoxButtons.OK,
+                    MessageBoxIcon.Hand);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+            ChangeState();
         }
     }
 }

@@ -12,20 +12,21 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
     {
         private readonly List<Role> _roles;
         private readonly UserDataAccess _user;
-        private readonly List<User> _users;
+        private List<User> _users;
 
         public UsersViewControl()
         {
             InitializeComponent();
             _user = new UserDataAccess();
             var role = new RoleDataAccess();
-            _users = _user.GetAllUsers();
             _roles = role.GetAllRoles();
             InitState();
         }
 
         private void InitState()
         {
+            _users = _user.GetAllUsers();
+
             UserDataGridView.DataSource = null;
             UserComboBox.Items.Clear();
             RoleComboBox.Items.Clear();
@@ -39,12 +40,21 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
                 ValueMember = @"RoleId",
                 DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing
             };
-            UserDataGridView.DataSource = _users;
+            var deleteButtonsColumn = new DataGridViewButtonColumn
+            {
+                HeaderText = @"Delete",
+                Name = @"UserDataGridUserDelete",
+                DataPropertyName = @"UserId",
+                UseColumnTextForButtonValue = true,
+                Text = @"Delete",
+                FlatStyle = FlatStyle.Flat,
+            };
+            UserDataGridView.DataSource = _user.GetAllUsers();
             UserDataGridView.Columns[0].Visible = UserDataGridView.Columns[3].Visible =
                 UserDataGridView.Columns[4].Visible
                     = UserDataGridView.Columns[5].Visible = UserDataGridView.Columns[6].Visible =
                         UserDataGridView.Columns[7].Visible = false;
-            UserDataGridView.Columns.Add(roleComboBoxColumn);
+            UserDataGridView.Columns.AddRange(roleComboBoxColumn, deleteButtonsColumn);
 
             UserComboBox.Items.Add("Select User From List");
             UserComboBox.SelectedIndex = 0;
@@ -78,6 +88,25 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
                 Console.WriteLine(exception);
             }
 
+            InitState();
+        }
+
+        private void UserDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex != 9 || UserDataGridView.CurrentRow == null) return;
+            var userId = int.Parse(StaticMethods.GridViewDataAccess(UserDataGridView, "UserId"));
+            var currentUser = _user.CurrentUser();
+           if (currentUser.UserId == userId || currentUser.Role.RoleName == "Admin") return; 
+            try
+            {
+                _user.DeleteUser(userId);
+                MetroMessageBox.Show(this, @"User Deleted!", @"Warning", MessageBoxButtons.OK,
+                    MessageBoxIcon.Hand);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
             InitState();
         }
     }

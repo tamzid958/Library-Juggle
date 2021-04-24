@@ -69,7 +69,6 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
             this.BookGridView.Location = new System.Drawing.Point(0, 140);
             this.BookGridView.Margin = new System.Windows.Forms.Padding(3, 30, 3, 3);
             this.BookGridView.Name = "BookGridView";
-            this.BookGridView.ReadOnly = true;
             this.BookGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(188)))), ((int)(((byte)(0)))));
@@ -85,6 +84,8 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
             this.BookGridView.Size = new System.Drawing.Size(567, 281);
             this.BookGridView.Style = MetroFramework.MetroColorStyle.Lime;
             this.BookGridView.TabIndex = 0;
+            this.BookGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.BookGridView_CellContentClick);
+            this.BookGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.BookGridView_CellValueChanged);
             // 
             // SearchBookTerm
             // 

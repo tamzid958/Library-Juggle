@@ -28,9 +28,17 @@ namespace Library_Juggle.Data_Access_Layer
             _db.SaveChangesAsync();
         }
 
-        public void UpdateGenre(Genre genre)
+        public void UpdateGenre(int genreId, string genreName)
         {
-            _db.Update(genre);
+            var currentGenre = GetGenre(genreId);
+            currentGenre.GenreName = genreName;
+            _db.Genres.Update(currentGenre);
+            _db.SaveChangesAsync();
+        }
+
+        public void DeleteGenre(int genreId)
+        {
+            _db.Genres.Remove(GetGenre(genreId));
             _db.SaveChangesAsync();
         }
     }

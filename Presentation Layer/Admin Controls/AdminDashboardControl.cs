@@ -68,6 +68,8 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
         private void CheckLoanList_Click(object sender, EventArgs e)
         {
             AdminDashboardPanel.Controls.Clear();
+            LoansViewControl loansView = new() { Dock = DockStyle.Fill };
+            AdminDashboardPanel.Controls.Add(loansView);
         }
     }
 }

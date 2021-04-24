@@ -40,7 +40,7 @@ namespace Library_Juggle.Business_Logic_Layer
 
         public static string GridViewDataAccess(DataGridView obj, string findRow)
         {
-            return obj.Rows[obj.CurrentRow!.Index].Cells[findRow].Value.ToString();
+            return obj.Rows[obj.CurrentRow!.Index].Cells[findRow].Value?.ToString();
         }
     }
 }
