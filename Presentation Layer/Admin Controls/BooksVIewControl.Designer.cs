@@ -39,6 +39,7 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
             // BookGridView
             // 
             this.BookGridView.AllowUserToResizeRows = false;
+            this.BookGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.BookGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.BookGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.BookGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;

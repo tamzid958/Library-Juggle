@@ -32,6 +32,8 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
             this.AdminName = new MetroFramework.Controls.MetroLabel();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.metroPanel3 = new MetroFramework.Controls.MetroPanel();
+            this.CheckLoanList = new MetroFramework.Controls.MetroButton();
+            this.CheckGenreList = new MetroFramework.Controls.MetroButton();
             this.CheckBookList = new MetroFramework.Controls.MetroButton();
             this.LogOutButton = new MetroFramework.Controls.MetroButton();
             this.CheckUserButton = new MetroFramework.Controls.MetroButton();
@@ -70,6 +72,8 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
             // 
             // metroPanel3
             // 
+            this.metroPanel3.Controls.Add(this.CheckLoanList);
+            this.metroPanel3.Controls.Add(this.CheckGenreList);
             this.metroPanel3.Controls.Add(this.CheckBookList);
             this.metroPanel3.Controls.Add(this.LogOutButton);
             this.metroPanel3.Controls.Add(this.CheckUserButton);
@@ -85,6 +89,28 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
             this.metroPanel3.VerticalScrollbarBarColor = true;
             this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel3.VerticalScrollbarSize = 10;
+            // 
+            // CheckLoanList
+            // 
+            this.CheckLoanList.Dock = System.Windows.Forms.DockStyle.Top;
+            this.CheckLoanList.Location = new System.Drawing.Point(10, 124);
+            this.CheckLoanList.Name = "CheckLoanList";
+            this.CheckLoanList.Size = new System.Drawing.Size(180, 38);
+            this.CheckLoanList.TabIndex = 7;
+            this.CheckLoanList.Text = "Check Loan List";
+            this.CheckLoanList.UseSelectable = true;
+            this.CheckLoanList.Click += new System.EventHandler(this.CheckLoanList_Click);
+            // 
+            // CheckGenreList
+            // 
+            this.CheckGenreList.Dock = System.Windows.Forms.DockStyle.Top;
+            this.CheckGenreList.Location = new System.Drawing.Point(10, 86);
+            this.CheckGenreList.Name = "CheckGenreList";
+            this.CheckGenreList.Size = new System.Drawing.Size(180, 38);
+            this.CheckGenreList.TabIndex = 6;
+            this.CheckGenreList.Text = "Check Genre List";
+            this.CheckGenreList.UseSelectable = true;
+            this.CheckGenreList.Click += new System.EventHandler(this.CheckGenreList_Click);
             // 
             // CheckBookList
             // 
@@ -180,5 +206,7 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
         private MetroFramework.Controls.MetroButton LogOutButton;
         private MetroFramework.Controls.MetroButton metroButton1;
         private MetroFramework.Controls.MetroButton CheckBookList;
+        private MetroFramework.Controls.MetroButton CheckGenreList;
+        private MetroFramework.Controls.MetroButton CheckLoanList;
     }
 }

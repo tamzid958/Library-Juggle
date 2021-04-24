@@ -21,5 +21,11 @@ namespace Library_Juggle.Data_Access_Layer
         {
             return _db.Genres.ToList();
         }
+
+        public void CreateGenre(Genre genre)
+        {
+            _db.Genres.AddAsync(genre);
+            _db.SaveChangesAsync();
+        }
     }
 }

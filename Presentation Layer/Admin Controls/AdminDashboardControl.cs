@@ -56,5 +56,17 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
             BooksViewControl booksView = new() { Dock = DockStyle.Fill };
             AdminDashboardPanel.Controls.Add(booksView);
         }
+
+        private void CheckGenreList_Click(object sender, System.EventArgs e)
+        {
+            AdminDashboardPanel.Controls.Clear();
+            GenresViewControl genresView = new() { Dock = DockStyle.Fill };
+            AdminDashboardPanel.Controls.Add(genresView);
+        }
+
+        private void CheckLoanList_Click(object sender, System.EventArgs e)
+        {
+            AdminDashboardPanel.Controls.Clear();
+        }
     }
 }
