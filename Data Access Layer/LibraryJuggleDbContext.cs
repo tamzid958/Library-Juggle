@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using Library_Juggle.Business_Logic_Layer;
 using Library_Juggle.Data_Access_Layer.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -28,15 +29,13 @@ namespace Library_Juggle.Data_Access_Layer
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=.;Database=LibraryJuggleDB;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["default connection"].ConnectionString);
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
-
-            modelBuilder.Entity<Book>(entity =>
+           modelBuilder.Entity<Book>(entity =>
             {
                 entity.HasIndex(e => e.GenreId, "IX_Books_GenreId");
 
