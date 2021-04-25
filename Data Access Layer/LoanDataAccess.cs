@@ -19,27 +19,15 @@ namespace Library_Juggle.Data_Access_Layer
         {
             return _db.Loans.ToList();
         }
+
         public Loan GetLoan(int loanId)
         {
-            return _db.Loans.FirstOrDefault(l=>l.LoanId == loanId);
+            return _db.Loans.FirstOrDefault(l => l.LoanId == loanId);
         }
+
         public List<LoanModelRepository> GetLoanModelRepository()
         {
             return _db.Loans.Include(u => u.UsersUser)
-                .Include(b => b.BooksBook).ToList()
-                .Select(loan => new LoanModelRepository
-                {
-                    LoanId = loan.LoanId,
-                    BookName = loan.BooksBook.BookTitle, 
-                    UserName = loan.UsersUser.Name, 
-                    DateIssued = loan.DateIssued,
-                    ReturnDate = loan.DateIssued.AddDays(loan.ReturningDays),
-                    Returned = loan.Returned ? "Yes" : "No"
-                }).ToList();
-        }
-        public List<LoanModelRepository> GetLoanModelRepositoryForSpecificUser(int userId)
-        {
-            return _db.Loans.Where(l=>l.UsersUserId == userId).Include(u => u.UsersUser)
                 .Include(b => b.BooksBook).ToList()
                 .Select(loan => new LoanModelRepository
                 {
@@ -51,6 +39,22 @@ namespace Library_Juggle.Data_Access_Layer
                     Returned = loan.Returned ? "Yes" : "No"
                 }).ToList();
         }
+
+        public List<LoanModelRepository> GetLoanModelRepositoryForSpecificUser(int userId)
+        {
+            return _db.Loans.Where(l => l.UsersUserId == userId).Include(u => u.UsersUser)
+                .Include(b => b.BooksBook).ToList()
+                .Select(loan => new LoanModelRepository
+                {
+                    LoanId = loan.LoanId,
+                    BookName = loan.BooksBook.BookTitle,
+                    UserName = loan.UsersUser.Name,
+                    DateIssued = loan.DateIssued,
+                    ReturnDate = loan.DateIssued.AddDays(loan.ReturningDays),
+                    Returned = loan.Returned ? "Yes" : "No"
+                }).ToList();
+        }
+
         public void CreateLoan(Loan loan)
         {
             _db.Loans.AddAsync(loan);

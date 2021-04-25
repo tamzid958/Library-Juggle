@@ -20,8 +20,9 @@ namespace Library_Juggle.Data_Access_Layer
 
         public Genre GetGenre(int genreId)
         {
-            return _db.Genres.FirstOrDefault(g=> g.GenreId == genreId);
+            return _db.Genres.FirstOrDefault(g => g.GenreId == genreId);
         }
+
         public void CreateGenre(Genre genre)
         {
             _db.Genres.AddAsync(genre);

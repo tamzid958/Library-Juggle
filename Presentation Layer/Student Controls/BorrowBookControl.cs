@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Library_Juggle.Business_Logic_Layer;
 using Library_Juggle.Data_Access_Layer;
@@ -16,9 +10,10 @@ namespace Library_Juggle.Presentation_Layer.Student_Controls
 {
     public partial class BorrowBookControl : UserControl
     {
+        private readonly List<Book> _books;
         private readonly LoanDataAccess _loan;
         private readonly UserDataAccess _user;
-        private readonly List<Book> _books;
+
         public BorrowBookControl()
         {
             InitializeComponent();
@@ -35,14 +30,15 @@ namespace Library_Juggle.Presentation_Layer.Student_Controls
             BookComboBox.SelectedIndex = 0;
 
             ReturnedDaysComboBox.SelectedIndex = 0;
-            
-            foreach (var book in _books) BookComboBox.Items.Add(new KeyValuePair<int, string>(book.BookId, book.BookTitle));
+
+            foreach (var book in _books)
+                BookComboBox.Items.Add(new KeyValuePair<int, string>(book.BookId, book.BookTitle));
         }
 
         private void TakeLoanBookButton_Click(object sender, EventArgs e)
         {
             ErrorData.Items.Clear();
-            if ( BookComboBox.SelectedIndex == 0 || ReturnedDaysComboBox.SelectedIndex == 0)
+            if (BookComboBox.SelectedIndex == 0 || ReturnedDaysComboBox.SelectedIndex == 0)
             {
                 ErrorData.Items.Add("Choose Book and Loan Days");
                 return;
@@ -51,7 +47,8 @@ namespace Library_Juggle.Presentation_Layer.Student_Controls
             var userId = _user.CurrentUser().UserId;
             var dateIssued = DateTime.Now;
             var (bookId, bookName) = StaticMethods.CastFromObjectToKeyValuePair<int, string>(BookComboBox.SelectedItem);
-            var returningDays = int.Parse(ReturnedDaysComboBox.SelectedItem.ToString()?.Replace("Days", "").Replace("Day", "")!);
+            var returningDays =
+                int.Parse(ReturnedDaysComboBox.SelectedItem.ToString()?.Replace("Days", "").Replace("Day", "")!);
             var newLoan = new Loan
             {
                 BooksBookId = bookId,

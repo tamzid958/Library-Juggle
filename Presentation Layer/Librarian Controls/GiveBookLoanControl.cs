@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Library_Juggle.Business_Logic_Layer;
 using Library_Juggle.Data_Access_Layer;
@@ -16,9 +10,10 @@ namespace Library_Juggle.Presentation_Layer.Librarian_Controls
 {
     public partial class GiveBookLoanControl : UserControl
     {
+        private readonly List<Book> _books;
         private readonly LoanDataAccess _loan;
         private readonly List<User> _users;
-        private readonly List<Book> _books;
+
         public GiveBookLoanControl()
         {
             InitializeComponent();
@@ -41,13 +36,15 @@ namespace Library_Juggle.Presentation_Layer.Librarian_Controls
             ReturnedDaysComboBox.SelectedIndex = 0;
 
             foreach (var user in _users) UserComboBox.Items.Add(new KeyValuePair<int, string>(user.UserId, user.Name));
-            foreach (var book in _books) BookComboBox.Items.Add(new KeyValuePair<int, string>(book.BookId, book.BookTitle));
+            foreach (var book in _books)
+                BookComboBox.Items.Add(new KeyValuePair<int, string>(book.BookId, book.BookTitle));
         }
 
         private void GiveLoanBookButton_Click(object sender, EventArgs e)
         {
             ErrorData.Items.Clear();
-            if (UserComboBox.SelectedIndex == 0 || BookComboBox.SelectedIndex == 0 || ReturnedDaysComboBox.SelectedIndex == 0)
+            if (UserComboBox.SelectedIndex == 0 || BookComboBox.SelectedIndex == 0 ||
+                ReturnedDaysComboBox.SelectedIndex == 0)
             {
                 ErrorData.Items.Add("Choose Book, User and Loan Days");
                 return;
@@ -56,7 +53,8 @@ namespace Library_Juggle.Presentation_Layer.Librarian_Controls
             var (bookId, bookName) = StaticMethods.CastFromObjectToKeyValuePair<int, string>(BookComboBox.SelectedItem);
             var (userId, userName) = StaticMethods.CastFromObjectToKeyValuePair<int, string>(UserComboBox.SelectedItem);
             var dateIssued = DateTime.Parse(LoanDate.Text);
-            var returningDays = int.Parse(ReturnedDaysComboBox.SelectedItem.ToString()?.Replace("Days", "").Replace("Day", "")!);
+            var returningDays =
+                int.Parse(ReturnedDaysComboBox.SelectedItem.ToString()?.Replace("Days", "").Replace("Day", "")!);
             var newLoan = new Loan
             {
                 BooksBookId = bookId,
@@ -70,7 +68,8 @@ namespace Library_Juggle.Presentation_Layer.Librarian_Controls
                 _loan.CreateLoan(newLoan);
                 try
                 {
-                    MetroMessageBox.Show(this, $@"{bookName} Book Loaned To {userName}!", @"Information", MessageBoxButtons.OK,
+                    MetroMessageBox.Show(this, $@"{bookName} Book Loaned To {userName}!", @"Information",
+                        MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                 }
                 catch (Exception exception)

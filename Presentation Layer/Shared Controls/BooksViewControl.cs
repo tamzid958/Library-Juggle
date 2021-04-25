@@ -10,9 +10,9 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
 {
     public partial class BooksViewControl : UserControl
     {
-        private readonly UserDataAccess _user;
         private readonly BookDataAccess _book;
         private readonly List<Genre> _genres;
+        private readonly UserDataAccess _user;
 
         public BooksViewControl()
         {
@@ -44,7 +44,7 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
                 DataPropertyName = @"BookId",
                 UseColumnTextForButtonValue = true,
                 Text = @"Delete",
-                FlatStyle = FlatStyle.Flat,
+                FlatStyle = FlatStyle.Flat
             };
             BookGridView.DataSource = _book.GetAllBooksByName(bookTitle);
             BookGridView.Columns[0].Visible = BookGridView.Columns[5].Visible =
@@ -63,12 +63,11 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
                 BookGridView.Columns.Add(genreComboBoxColumn);
                 BookGridView.ReadOnly = true;
             }
-
         }
 
         private void SearchBookTerm_KeyUp(object sender, KeyEventArgs e)
         {
-            if(string.IsNullOrWhiteSpace(SearchBookTerm.Text)) return;
+            if (string.IsNullOrWhiteSpace(SearchBookTerm.Text)) return;
             InitState(SearchBookTerm.Text);
         }
 
@@ -82,21 +81,21 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
             var bookPublishDate = StaticMethods.GridViewDataAccess(BookGridView, "BookPublishedDate");
             var genreId = int.Parse(StaticMethods.GridViewDataAccess(BookGridView, "UserDataGridGenre"));
             var currentBook = _book.GetBook(bookId);
-            if (currentBook == null 
+            if (currentBook == null
                 || string.IsNullOrWhiteSpace(bookTitle)
                 || string.IsNullOrWhiteSpace(bookAuthor)
                 || string.IsNullOrWhiteSpace(bookPublisher)
                 || string.IsNullOrWhiteSpace(bookPublishDate)) return;
-           _book.UpdateBook(bookId, bookTitle, bookAuthor, bookPublisher, bookPublishDate, genreId);
-           try
-           {
-               MetroMessageBox.Show(this, $"{bookTitle} Updated!", @"Information", MessageBoxButtons.OK,
-                   MessageBoxIcon.Information);
-           }
-           catch (Exception exception)
-           {
-               Console.WriteLine(exception);
-           }
+            _book.UpdateBook(bookId, bookTitle, bookAuthor, bookPublisher, bookPublishDate, genreId);
+            try
+            {
+                MetroMessageBox.Show(this, $"{bookTitle} Updated!", @"Information", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
         }
 
         private void BookGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -113,6 +112,7 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
             {
                 Console.WriteLine(exception);
             }
+
             InitState();
         }
     }

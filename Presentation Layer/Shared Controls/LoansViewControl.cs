@@ -27,7 +27,7 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
                 DataPropertyName = @"LoanId",
                 UseColumnTextForButtonValue = true,
                 Text = @"✔️",
-                FlatStyle = FlatStyle.Flat,
+                FlatStyle = FlatStyle.Flat
             };
 
             LoanGridView.DataSource = _loan.GetLoanModelRepository();

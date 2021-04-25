@@ -47,7 +47,7 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
                 DataPropertyName = @"UserId",
                 UseColumnTextForButtonValue = true,
                 Text = @"Delete",
-                FlatStyle = FlatStyle.Flat,
+                FlatStyle = FlatStyle.Flat
             };
             UserDataGridView.DataSource = _user.GetAllUsers();
             UserDataGridView.Columns[0].Visible = UserDataGridView.Columns[3].Visible =
@@ -62,8 +62,10 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
             RoleComboBox.SelectedIndex = 0;
             foreach (var user in _users) UserComboBox.Items.Add(new KeyValuePair<int, string>(user.UserId, user.Email));
 
-            foreach (var role in _roles) RoleComboBox.Items.Add(new KeyValuePair<int, string>(role.RoleId, role.RoleName));
-            if (_user.CurrentUser().Role.RoleName is not "Admin") UserComboBox.Visible = RoleComboBox.Visible = ChangeRoleButton.Visible = false;
+            foreach (var role in _roles)
+                RoleComboBox.Items.Add(new KeyValuePair<int, string>(role.RoleId, role.RoleName));
+            if (_user.CurrentUser().Role.RoleName is not "Admin")
+                UserComboBox.Visible = RoleComboBox.Visible = ChangeRoleButton.Visible = false;
         }
 
         private void ChangeRoleButton_Click(object sender, EventArgs e)
@@ -98,7 +100,7 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
             var selectedUser = _user.GetUser(userId);
             var currentUser = _user.CurrentUser();
             if (currentUser.UserId == userId || selectedUser.Role.RoleName is "Admin") return;
-            if(currentUser.Role.RoleName is "Librarian" && selectedUser.Role.RoleName is "Librarian") return;
+            if (currentUser.Role.RoleName is "Librarian" && selectedUser.Role.RoleName is "Librarian") return;
             try
             {
                 _user.DeleteUser(userId);
@@ -109,6 +111,7 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
             {
                 Console.WriteLine(exception);
             }
+
             InitState();
         }
     }

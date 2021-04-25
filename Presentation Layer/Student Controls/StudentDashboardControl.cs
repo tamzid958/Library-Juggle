@@ -30,30 +30,32 @@ namespace Library_Juggle.Presentation_Layer.Student_Controls
             {
                 StudentName.Text = currentUser.Name;
             }
-            BooksViewControl booksView = new() { Dock = DockStyle.Fill };
+
+            BooksViewControl booksView = new() {Dock = DockStyle.Fill};
             StudentDashboardPanel.Controls.Add(booksView);
         }
 
         private void CheckBookList_Click(object sender, EventArgs e)
         {
             StudentDashboardPanel.Controls.Clear();
-            BooksViewControl booksView = new() { Dock = DockStyle.Fill };
+            BooksViewControl booksView = new() {Dock = DockStyle.Fill};
             StudentDashboardPanel.Controls.Add(booksView);
         }
 
         private void BorrowBookButton_Click(object sender, EventArgs e)
         {
             StudentDashboardPanel.Controls.Clear();
-            BorrowBookControl borrowBook = new() { Dock = DockStyle.Fill };
+            BorrowBookControl borrowBook = new() {Dock = DockStyle.Fill};
             StudentDashboardPanel.Controls.Add(borrowBook);
         }
 
         private void CheckBorrowedBooksButton_Click(object sender, EventArgs e)
         {
             StudentDashboardPanel.Controls.Clear();
-            BorrowedBooksViewControl borrowedBooks = new() { Dock = DockStyle.Fill };
+            BorrowedBooksViewControl borrowedBooks = new() {Dock = DockStyle.Fill};
             StudentDashboardPanel.Controls.Add(borrowedBooks);
         }
+
         private void LogOutButton_Click(object sender, EventArgs e)
         {
             StaticMethods.LogOutUser();

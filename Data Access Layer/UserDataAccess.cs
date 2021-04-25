@@ -50,6 +50,7 @@ namespace Library_Juggle.Data_Access_Layer
         {
             return _db.Users.Include(r => r.Role).ToList();
         }
+
         public User GetUser(int userId)
         {
             return _db.Users.FirstOrDefault(u => u.UserId == userId);

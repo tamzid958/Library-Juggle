@@ -25,7 +25,9 @@ namespace Library_Juggle.Data_Access_Layer
 
         public List<Book> GetAllBooksByName(string bookTitle)
         {
-            return string.IsNullOrWhiteSpace(bookTitle) ? GetAllBooks() : _db.Books.Where(b => b.BookTitle.ToLower().Contains(bookTitle.ToLower())).ToList();
+            return string.IsNullOrWhiteSpace(bookTitle)
+                ? GetAllBooks()
+                : _db.Books.Where(b => b.BookTitle.ToLower().Contains(bookTitle.ToLower())).ToList();
         }
 
         public void CreateBook(Book book)
@@ -33,7 +35,9 @@ namespace Library_Juggle.Data_Access_Layer
             _db.Books.AddAsync(book);
             _db.SaveChangesAsync();
         }
-        public void UpdateBook(int bookId, string bookTitle, string bookAuthor, string bookPublisher, string bookPublishDate, int genreId)
+
+        public void UpdateBook(int bookId, string bookTitle, string bookAuthor, string bookPublisher,
+            string bookPublishDate, int genreId)
         {
             var currentBook = GetBook(bookId);
             currentBook.BookTitle = bookTitle;
