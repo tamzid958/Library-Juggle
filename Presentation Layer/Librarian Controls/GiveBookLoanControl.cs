@@ -38,6 +38,8 @@ namespace Library_Juggle.Presentation_Layer.Librarian_Controls
             BookComboBox.Items.Add("Select Book From List");
             BookComboBox.SelectedIndex = 0;
 
+            ReturnedDaysComboBox.SelectedIndex = 0;
+
             foreach (var user in _users) UserComboBox.Items.Add(new KeyValuePair<int, string>(user.UserId, user.Name));
             foreach (var book in _books) BookComboBox.Items.Add(new KeyValuePair<int, string>(book.BookId, book.BookTitle));
         }
@@ -45,20 +47,23 @@ namespace Library_Juggle.Presentation_Layer.Librarian_Controls
         private void GiveLoanBookButton_Click(object sender, EventArgs e)
         {
             ErrorData.Items.Clear();
-            if (UserComboBox.SelectedIndex == 0 || BookComboBox.SelectedIndex == 0)
+            if (UserComboBox.SelectedIndex == 0 || BookComboBox.SelectedIndex == 0 || ReturnedDaysComboBox.SelectedIndex == 0)
             {
-                ErrorData.Items.Add("Choose Book and User");
+                ErrorData.Items.Add("Choose Book, User and Loan Days");
                 return;
             }
 
             var (bookId, bookName) = StaticMethods.CastFromObjectToKeyValuePair<int, string>(BookComboBox.SelectedItem);
             var (userId, userName) = StaticMethods.CastFromObjectToKeyValuePair<int, string>(UserComboBox.SelectedItem);
             var dateIssued = DateTime.Parse(LoanDate.Text);
+            var returningDays = int.Parse(ReturnedDaysComboBox.SelectedItem.ToString()?.Replace("Days", "").Replace("Day", "")!);
             var newLoan = new Loan
             {
                 BooksBookId = bookId,
                 UsersUserId = userId,
-                DateIssued = dateIssued
+                DateIssued = dateIssued,
+                ReturningDays = returningDays,
+                Returned = false
             };
             if (newLoan.GetModelErrors() == null)
             {

@@ -38,6 +38,8 @@ namespace Library_Juggle.Presentation_Layer.Librarian_Controls
             this.GiveLoanBookButton = new MetroFramework.Controls.MetroButton();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.ErrorData = new System.Windows.Forms.ListBox();
+            this.ReturnedDaysComboBox = new MetroFramework.Controls.MetroComboBox();
+            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.metroPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,7 +49,7 @@ namespace Library_Juggle.Presentation_Layer.Librarian_Controls
             this.UserComboBox.ItemHeight = 23;
             this.UserComboBox.Location = new System.Drawing.Point(9, 31);
             this.UserComboBox.Name = "UserComboBox";
-            this.UserComboBox.Size = new System.Drawing.Size(505, 29);
+            this.UserComboBox.Size = new System.Drawing.Size(214, 29);
             this.UserComboBox.TabIndex = 0;
             this.UserComboBox.UseSelectable = true;
             // 
@@ -63,7 +65,7 @@ namespace Library_Juggle.Presentation_Layer.Librarian_Controls
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(9, 63);
+            this.metroLabel2.Location = new System.Drawing.Point(243, 9);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(87, 19);
             this.metroLabel2.TabIndex = 2;
@@ -73,24 +75,24 @@ namespace Library_Juggle.Presentation_Layer.Librarian_Controls
             // 
             this.BookComboBox.FormattingEnabled = true;
             this.BookComboBox.ItemHeight = 23;
-            this.BookComboBox.Location = new System.Drawing.Point(9, 85);
+            this.BookComboBox.Location = new System.Drawing.Point(243, 31);
             this.BookComboBox.Name = "BookComboBox";
-            this.BookComboBox.Size = new System.Drawing.Size(505, 29);
+            this.BookComboBox.Size = new System.Drawing.Size(214, 29);
             this.BookComboBox.TabIndex = 3;
             this.BookComboBox.UseSelectable = true;
             // 
             // LoanDate
             // 
-            this.LoanDate.Location = new System.Drawing.Point(9, 139);
+            this.LoanDate.Location = new System.Drawing.Point(9, 85);
             this.LoanDate.MinimumSize = new System.Drawing.Size(0, 29);
             this.LoanDate.Name = "LoanDate";
-            this.LoanDate.Size = new System.Drawing.Size(505, 29);
+            this.LoanDate.Size = new System.Drawing.Size(214, 29);
             this.LoanDate.TabIndex = 4;
             // 
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(9, 117);
+            this.metroLabel3.Location = new System.Drawing.Point(9, 63);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(68, 19);
             this.metroLabel3.TabIndex = 5;
@@ -98,7 +100,7 @@ namespace Library_Juggle.Presentation_Layer.Librarian_Controls
             // 
             // GiveLoanBookButton
             // 
-            this.GiveLoanBookButton.Location = new System.Drawing.Point(9, 174);
+            this.GiveLoanBookButton.Location = new System.Drawing.Point(9, 120);
             this.GiveLoanBookButton.Name = "GiveLoanBookButton";
             this.GiveLoanBookButton.Size = new System.Drawing.Size(120, 34);
             this.GiveLoanBookButton.TabIndex = 6;
@@ -133,10 +135,38 @@ namespace Library_Juggle.Presentation_Layer.Librarian_Controls
             this.ErrorData.Size = new System.Drawing.Size(399, 42);
             this.ErrorData.TabIndex = 28;
             // 
+            // ReturnedDaysComboBox
+            // 
+            this.ReturnedDaysComboBox.FormattingEnabled = true;
+            this.ReturnedDaysComboBox.ItemHeight = 23;
+            this.ReturnedDaysComboBox.Items.AddRange(new object[] {
+            "Select Days From List",
+            "1 Day",
+            "2 Days",
+            "7 Days",
+            "15 Days",
+            "30 Days"});
+            this.ReturnedDaysComboBox.Location = new System.Drawing.Point(243, 85);
+            this.ReturnedDaysComboBox.Name = "ReturnedDaysComboBox";
+            this.ReturnedDaysComboBox.Size = new System.Drawing.Size(214, 29);
+            this.ReturnedDaysComboBox.TabIndex = 32;
+            this.ReturnedDaysComboBox.UseSelectable = true;
+            // 
+            // metroLabel4
+            // 
+            this.metroLabel4.AutoSize = true;
+            this.metroLabel4.Location = new System.Drawing.Point(243, 63);
+            this.metroLabel4.Name = "metroLabel4";
+            this.metroLabel4.Size = new System.Drawing.Size(121, 19);
+            this.metroLabel4.TabIndex = 33;
+            this.metroLabel4.Text = "Give Loan For Days";
+            // 
             // GiveBookLoanControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.metroLabel4);
+            this.Controls.Add(this.ReturnedDaysComboBox);
             this.Controls.Add(this.metroPanel1);
             this.Controls.Add(this.GiveLoanBookButton);
             this.Controls.Add(this.metroLabel3);
@@ -166,5 +196,8 @@ namespace Library_Juggle.Presentation_Layer.Librarian_Controls
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private System.Windows.Forms.ListBox ErrorData;
         private MetroFramework.Controls.MetroComboBox BookComboBox;
+        private MetroFramework.Controls.MetroComboBox ReturnedDays;
+        private MetroFramework.Controls.MetroLabel metroLabel4;
+        private MetroFramework.Controls.MetroComboBox ReturnedDaysComboBox;
     }
 }

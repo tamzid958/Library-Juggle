@@ -28,8 +28,8 @@ namespace Library_Juggle.Data_Access_Layer
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["default connection"]
-                    .ConnectionString);
+                optionsBuilder.UseSqlServer(
+                    ConfigurationManager.ConnectionStrings["default connection"].ConnectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -12,6 +12,10 @@ namespace Library_Juggle.Data_Access_Layer.Entities
 
         [Required] public DateTime DateIssued { get; set; }
 
+        [Required] public int ReturningDays { get; set; }
+
+        [Required] public bool Returned { get; set; }
+        
         [Required] [ForeignKey("User")] public int UsersUserId { get; set; }
 
         [Required] [ForeignKey("Book")] public int BooksBookId { get; set; }

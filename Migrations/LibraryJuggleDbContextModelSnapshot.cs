@@ -81,6 +81,12 @@ namespace Library_Juggle.Migrations
                     b.Property<DateTime>("DateIssued")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("Returned")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ReturningDays")
+                        .HasColumnType("int");
+
                     b.Property<int>("UsersUserId")
                         .HasColumnType("int");
 
@@ -168,7 +174,7 @@ namespace Library_Juggle.Migrations
                             Name = "Library Admin",
                             Password = "CD6FA8ABA065897E5A56061882350B66",
                             RoleId = 1,
-                            Token = new Guid("d8be1deb-b36d-46da-8c46-9660a6a8cbda")
+                            Token = new Guid("a7c0b60a-c85c-4abb-92af-ee9b3cf7a72f")
                         });
                 });
 

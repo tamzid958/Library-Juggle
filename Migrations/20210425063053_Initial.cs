@@ -86,6 +86,8 @@ namespace Library_Juggle.Migrations
                     LoanId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DateIssued = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ReturningDays = table.Column<int>(type: "int", nullable: false),
+                    Returned = table.Column<bool>(type: "bit", nullable: false),
                     UsersUserId = table.Column<int>(type: "int", nullable: false),
                     BooksBookId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -124,7 +126,7 @@ namespace Library_Juggle.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "UserId", "Email", "Name", "Password", "RoleId", "Token" },
-                values: new object[] { 1, "admin@libraryjuggle.com", "Library Admin", "CD6FA8ABA065897E5A56061882350B66", 1, new Guid("d8be1deb-b36d-46da-8c46-9660a6a8cbda") });
+                values: new object[] { 1, "admin@libraryjuggle.com", "Library Admin", "CD6FA8ABA065897E5A56061882350B66", 1, new Guid("a7c0b60a-c85c-4abb-92af-ee9b3cf7a72f") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Books_GenreId",
