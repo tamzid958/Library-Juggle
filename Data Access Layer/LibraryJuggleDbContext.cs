@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Library_Juggle.Data_Access_Layer
 {
-    public class LibraryJuggleDbContext : DbContext
+    public partial class LibraryJuggleDbContext : DbContext
     {
         public LibraryJuggleDbContext()
         {
@@ -71,9 +71,6 @@ namespace Library_Juggle.Data_Access_Layer
             OnModelCreatingPartial(modelBuilder);
         }
 
-        private void OnModelCreatingPartial(ModelBuilder modelBuilder)
-        {
-            throw new NotImplementedException();
-        }
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
