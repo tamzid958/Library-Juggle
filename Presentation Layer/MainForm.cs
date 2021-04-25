@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using Library_Juggle.Business_Logic_Layer;
 using Library_Juggle.Data_Access_Layer;
 using Library_Juggle.Presentation_Layer.Admin_Controls;
 using Library_Juggle.Presentation_Layer.Authentication_Controls;
@@ -42,6 +43,9 @@ namespace Library_Juggle.Presentation_Layer
                     case "Student":
                         StudentDashboardControl studentDashboard = new() {Dock = DockStyle.Fill};
                         Controls.Add(studentDashboard);
+                        break;
+                    default:
+                        StaticMethods.LogOutUser();
                         break;
                 }
             }
