@@ -2,7 +2,7 @@
 
 namespace Library_Juggle.Business_Logic_Layer
 {
-    public class FakeLoanEntityRepository
+    public class FakeLoan
     {
         public int LoanId { set; get; }
         public string BookName { set; get; }

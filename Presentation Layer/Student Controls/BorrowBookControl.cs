@@ -46,7 +46,7 @@ namespace Library_Juggle.Presentation_Layer.Student_Controls
 
             var userId = _user.CurrentUser().UserId;
             var dateIssued = DateTime.Now;
-            var (bookId, bookName) = StaticMethods.CastFromObjectToKeyValuePair<int, string>(BookComboBox.SelectedItem);
+            var (bookId, bookName) = BookComboBox.SelectedItem.CastFromObjectToKeyValuePair<int, string>();
             var returningDays =
                 int.Parse(ReturnedDaysComboBox.SelectedItem.ToString()?.Replace("Days", "").Replace("Day", "")!);
             var newLoan = new Loan

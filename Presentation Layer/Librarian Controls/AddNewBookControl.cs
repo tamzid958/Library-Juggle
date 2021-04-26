@@ -43,7 +43,7 @@ namespace Library_Juggle.Presentation_Layer.Librarian_Controls
             var bookAuthor = BookAuthor.Text;
             var bookPublisher = BookPublisher.Text;
             var bookPublishDate = BookPublishDate.Text;
-            var genreId = StaticMethods.CastFromObjectToKeyValuePair<int, string>(BookGenre.SelectedItem).Key;
+            var genreId = BookGenre.SelectedItem.CastFromObjectToKeyValuePair<int, string>().Key;
 
             var newBook = new Book
             {

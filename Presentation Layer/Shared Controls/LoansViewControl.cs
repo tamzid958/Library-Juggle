@@ -43,7 +43,7 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
         private void LoanGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex != 6 || LoanGridView.CurrentRow == null) return;
-            var loanId = int.Parse(StaticMethods.GridViewDataAccess(LoanGridView, "LoanId"));
+            var loanId = int.Parse(LoanGridView.GridViewGetRowValueByColumn("LoanId"));
             try
             {
                 _loan.MarkAsReturned(loanId);

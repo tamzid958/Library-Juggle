@@ -33,19 +33,20 @@ namespace Library_Juggle.Presentation_Layer
                 switch (currentUser.Role.RoleName)
                 {
                     case "Admin":
-                        AdminDashboardControl adminDashboard = new() {Dock = DockStyle.Fill};
+                        AdminDashboardControl adminDashboard = new() { Dock = DockStyle.Fill };
                         Controls.Add(adminDashboard);
                         break;
                     case "Librarian":
-                        LibrarianDashboardControl librarianDashboard = new() {Dock = DockStyle.Fill};
+                        LibrarianDashboardControl librarianDashboard = new() { Dock = DockStyle.Fill };
                         Controls.Add(librarianDashboard);
                         break;
                     case "Student":
-                        StudentDashboardControl studentDashboard = new() {Dock = DockStyle.Fill};
+                        StudentDashboardControl studentDashboard = new() { Dock = DockStyle.Fill };
                         Controls.Add(studentDashboard);
                         break;
                     default:
                         StaticMethods.LogOutUser();
+                        Application.Exit();
                         break;
                 }
             }

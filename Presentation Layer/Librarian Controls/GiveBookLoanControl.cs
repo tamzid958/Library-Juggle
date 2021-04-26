@@ -50,8 +50,8 @@ namespace Library_Juggle.Presentation_Layer.Librarian_Controls
                 return;
             }
 
-            var (bookId, bookName) = StaticMethods.CastFromObjectToKeyValuePair<int, string>(BookComboBox.SelectedItem);
-            var (userId, userName) = StaticMethods.CastFromObjectToKeyValuePair<int, string>(UserComboBox.SelectedItem);
+            var (bookId, bookName) = BookComboBox.SelectedItem.CastFromObjectToKeyValuePair<int, string>();
+            var (userId, userName) = UserComboBox.SelectedItem.CastFromObjectToKeyValuePair<int, string>();
             var dateIssued = DateTime.Parse(LoanDate.Text);
             var returningDays =
                 int.Parse(ReturnedDaysComboBox.SelectedItem.ToString()?.Replace("Days", "").Replace("Day", "")!);

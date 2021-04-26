@@ -27,7 +27,7 @@ namespace Library_Juggle.Business_Logic_Layer
             return errorList.Count != 0 ? errorList : null;
         }
 
-        public static KeyValuePair<T, TV> CastFromObjectToKeyValuePair<T, TV>(object obj)
+        public static KeyValuePair<T, TV> CastFromObjectToKeyValuePair<T, TV>(this object obj)
         {
             return (KeyValuePair<T, TV>) obj;
         }
@@ -37,7 +37,7 @@ namespace Library_Juggle.Business_Logic_Layer
             if (File.Exists(@"cookie.key")) File.Delete(@"cookie.key");
         }
 
-        public static string GridViewDataAccess(DataGridView obj, string findRow)
+        public static string GridViewGetRowValueByColumn(this DataGridView obj, string findRow)
         {
             return obj.Rows[obj.CurrentRow!.Index].Cells[findRow].Value?.ToString();
         }

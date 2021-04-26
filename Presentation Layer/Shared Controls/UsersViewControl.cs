@@ -75,8 +75,8 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
                 || RoleComboBox.SelectedItem == null
                 || RoleComboBox.SelectedIndex == 0) return;
 
-            var userId = StaticMethods.CastFromObjectToKeyValuePair<int, string>(UserComboBox.SelectedItem).Key;
-            var roleId = StaticMethods.CastFromObjectToKeyValuePair<int, string>(RoleComboBox.SelectedItem).Key;
+            var userId = UserComboBox.SelectedItem.CastFromObjectToKeyValuePair<int, string>().Key;
+            var roleId = RoleComboBox.SelectedItem.CastFromObjectToKeyValuePair<int, string>().Key;
 
             if (_user.GetUser(userId) == null) return;
             _user.UpdateRole(userId, roleId);
@@ -96,7 +96,7 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
         private void UserDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex != 9 || UserDataGridView.CurrentRow == null) return;
-            var userId = int.Parse(StaticMethods.GridViewDataAccess(UserDataGridView, "UserId"));
+            var userId = int.Parse(UserDataGridView.GridViewGetRowValueByColumn("UserId"));
             var selectedUser = _user.GetUser(userId);
             var currentUser = _user.CurrentUser();
             if (currentUser.UserId == userId || selectedUser.Role.RoleName is "Admin") return;

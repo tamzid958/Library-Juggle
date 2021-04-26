@@ -74,12 +74,12 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
         private void BookGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (BookGridView.CurrentRow == null) return;
-            var bookId = int.Parse(StaticMethods.GridViewDataAccess(BookGridView, "BookId"));
-            var bookTitle = StaticMethods.GridViewDataAccess(BookGridView, "BookTitle");
-            var bookAuthor = StaticMethods.GridViewDataAccess(BookGridView, "BookAuthor");
-            var bookPublisher = StaticMethods.GridViewDataAccess(BookGridView, "BookPublisher");
-            var bookPublishDate = StaticMethods.GridViewDataAccess(BookGridView, "BookPublishedDate");
-            var genreId = int.Parse(StaticMethods.GridViewDataAccess(BookGridView, "UserDataGridGenre"));
+            var bookId = int.Parse(BookGridView.GridViewGetRowValueByColumn("BookId"));
+            var bookTitle = BookGridView.GridViewGetRowValueByColumn("BookTitle");
+            var bookAuthor = BookGridView.GridViewGetRowValueByColumn("BookAuthor");
+            var bookPublisher = BookGridView.GridViewGetRowValueByColumn("BookPublisher");
+            var bookPublishDate = BookGridView.GridViewGetRowValueByColumn("BookPublishedDate");
+            var genreId = int.Parse(BookGridView.GridViewGetRowValueByColumn("UserDataGridGenre"));
             var currentBook = _book.GetBook(bookId);
             if (currentBook == null
                 || string.IsNullOrWhiteSpace(bookTitle)
@@ -101,7 +101,7 @@ namespace Library_Juggle.Presentation_Layer.Shared_Controls
         private void BookGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex != 9 || BookGridView.CurrentRow == null) return;
-            var bookId = int.Parse(StaticMethods.GridViewDataAccess(BookGridView, "BookId"));
+            var bookId = int.Parse(BookGridView.GridViewGetRowValueByColumn("BookId"));
             try
             {
                 _book.DeleteBook(bookId);

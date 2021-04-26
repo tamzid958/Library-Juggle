@@ -20,7 +20,6 @@ namespace Library_Juggle.Presentation_Layer.Student_Controls
         {
             BorrowedBooksGrid.DataSource = _loan.GetLoanModelRepositoryForSpecificUser(_user.CurrentUser().UserId);
             BorrowedBooksGrid.Columns[0].Visible = BorrowedBooksGrid.Columns[2].Visible = false;
-            ;
             BorrowedBooksGrid.Columns[1].HeaderText = @"Book";
             BorrowedBooksGrid.Columns[3].HeaderText = @"Date Issued";
             BorrowedBooksGrid.Columns[4].HeaderText = @"Return Date";

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using Library_Juggle.Business_Logic_Layer;
 using Library_Juggle.Data_Access_Layer;
 using Library_Juggle.Presentation_Layer.Admin_Controls;
 using Library_Juggle.Presentation_Layer.Librarian_Controls;
@@ -46,18 +47,19 @@ namespace Library_Juggle.Presentation_Layer.Authentication_Controls
             switch (currentUser.Role.RoleName)
             {
                 case "Admin":
-                    AdminDashboardControl adminDashboard = new() {Dock = DockStyle.Fill};
+                    AdminDashboardControl adminDashboard = new() { Dock = DockStyle.Fill };
                     Parent.Controls.Add(adminDashboard);
                     break;
                 case "Librarian":
-                    LibrarianDashboardControl librarianDashboard = new() {Dock = DockStyle.Fill};
+                    LibrarianDashboardControl librarianDashboard = new() { Dock = DockStyle.Fill };
                     Parent.Controls.Add(librarianDashboard);
                     break;
                 case "Student":
-                    StudentDashboardControl studentDashboard = new() {Dock = DockStyle.Fill};
+                    StudentDashboardControl studentDashboard = new() { Dock = DockStyle.Fill };
                     Parent.Controls.Add(studentDashboard);
                     break;
                 default:
+                    StaticMethods.LogOutUser();
                     Application.Exit();
                     break;
             }

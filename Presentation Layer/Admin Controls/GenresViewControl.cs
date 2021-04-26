@@ -62,8 +62,8 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
         private void GenreGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (GenreGridView.CurrentRow == null) return;
-            var genreId = int.Parse(StaticMethods.GridViewDataAccess(GenreGridView, "GenreId"));
-            var genreName = StaticMethods.GridViewDataAccess(GenreGridView, "GenreName");
+            var genreId = int.Parse(GenreGridView.GridViewGetRowValueByColumn("GenreId"));
+            var genreName = GenreGridView.GridViewGetRowValueByColumn("GenreName");
             var currentGenre = _genre.GetGenre(genreId);
             if (currentGenre == null) return;
             if (string.IsNullOrWhiteSpace(genreName)) return;
@@ -84,7 +84,7 @@ namespace Library_Juggle.Presentation_Layer.Admin_Controls
         private void GenreGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex != 3 || GenreGridView.CurrentRow == null) return;
-            var genreId = int.Parse(StaticMethods.GridViewDataAccess(GenreGridView, "GenreId"));
+            var genreId = int.Parse(GenreGridView.GridViewGetRowValueByColumn("GenreId"));
             try
             {
                 _genre.DeleteGenre(genreId);

@@ -25,11 +25,11 @@ namespace Library_Juggle.Data_Access_Layer
             return _db.Loans.FirstOrDefault(l => l.LoanId == loanId);
         }
 
-        public List<FakeLoanEntityRepository> GetLoanModelRepository()
+        public List<FakeLoan> GetLoanModelRepository()
         {
             return _db.Loans.Include(u => u.UsersUser)
                 .Include(b => b.BooksBook).ToList()
-                .Select(loan => new FakeLoanEntityRepository
+                .Select(loan => new FakeLoan
                 {
                     LoanId = loan.LoanId,
                     BookName = loan.BooksBook.BookTitle,
@@ -40,11 +40,11 @@ namespace Library_Juggle.Data_Access_Layer
                 }).ToList();
         }
 
-        public List<FakeLoanEntityRepository> GetLoanModelRepositoryForSpecificUser(int userId)
+        public List<FakeLoan> GetLoanModelRepositoryForSpecificUser(int userId)
         {
             return _db.Loans.Where(l => l.UsersUserId == userId).Include(u => u.UsersUser)
                 .Include(b => b.BooksBook).ToList()
-                .Select(loan => new FakeLoanEntityRepository
+                .Select(loan => new FakeLoan
                 {
                     LoanId = loan.LoanId,
                     BookName = loan.BooksBook.BookTitle,
